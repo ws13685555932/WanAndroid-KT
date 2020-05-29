@@ -2,7 +2,7 @@
 <resources>
 
     <!--    #F60B0B-->
-    <color name="theme">#F60B0B</color>
+    <color name="theme">#F87499</color>
     <color name="theme_2">#00CAAE</color>
     <color name="normal_color">#bfbfbf</color>
 
@@ -24,9 +24,12 @@
     <color name="red">#F60B0B</color>
     <color name="transparent">#00FFFFFF</color>
 
-    <color name="colorPrimary">#F60B0B</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#F87499</color>
+    <color name="colorPrimaryDark">#F87499</color>
+    <color name="colorAccent">#F87499</color>
+
+    <color name="background">#F4F4F4</color>
+    <color name="light_pink">#FEDCE6</color>
 
 
 

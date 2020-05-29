@@ -7,164 +7,164 @@
     android:background="@color/white"
     tools:context=".ui.main.mine.MineFragment">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/civHead"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginLeft="@dimen/set_padding"
-        android:layout_marginTop="80dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/texas"
-        app:civ_border_color="@color/white"
-        app:civ_border_width="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="请先登录"
-        android:textColor="@color/black"
-        android:textSize="17dp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/civHead"
-        app:layout_constraintTop_toTopOf="@+id/civHead" />
-
-    <TextView
-        android:id="@+id/tvId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="3dp"
-        android:text="id:---"
-        android:textColor="@color/text_1"
-        android:textSize="13dp"
-        app:layout_constraintLeft_toRightOf="@+id/civHead"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clHead"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/set_padding"
-        android:paddingRight="@dimen/set_padding"
-        app:layout_constraintTop_toBottomOf="@+id/civHead">
+        android:layout_height="wrap_content"
+        android:background="@color/theme"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civHead"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="@dimen/set_padding"
+            android:layout_marginTop="65dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/texas"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="陌上疏影凉"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toRightOf="@+id/civHead"
+            app:layout_constraintTop_toTopOf="@+id/civHead" />
+
+        <TextView
+            android:id="@+id/tvId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:text="id:220181644"
+            android:background="@drawable/bg_text"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:textColor="@color/theme"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@+id/civHead"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
 
         <LinearLayout
-            android:id="@+id/llHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/civHead">
 
-            <TextView
-                android:id="@+id/tvHistory"
+            <LinearLayout
+                android:id="@+id/llHistory"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_1"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                style="@style/text_2"
+                <TextView
+                    android:id="@+id/tvHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_1"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="足迹"
+                    android:textColor="@color/light_pink" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/light_pink" />
+
+            <LinearLayout
+                android:id="@+id/llRanking"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="足迹" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvRanking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_1"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="排名"
+                    android:textColor="@color/light_pink" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/light_pink" />
+
+            <LinearLayout
+                android:id="@+id/llCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvCoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_1"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="积分"
+                    android:textColor="@color/light_pink" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/llRanking"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tvRanking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_1"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="排名" />
-        </LinearLayout>
-    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:layout_marginTop="80dp"
         android:background="@color/division_line_thickening"
-        app:layout_constraintTop_toBottomOf="@+id/civHead" />
+        app:layout_constraintTop_toBottomOf="@+id/clHead" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/civHead">
-
-        <RelativeLayout
-            android:id="@+id/rlIntegral"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/set_padding"
-            android:paddingRight="@dimen/set_padding">
-
-            <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/integral" />
-
-            <TextView
-                style="@style/text_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:drawableRight="@mipmap/arrow_right"
-                android:text="我的积分"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/tvIntegral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="40dp"
-                android:text="0"
-                android:textColor="@color/orange"
-                android:textSize="@dimen/text_2"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="6dp"
-                android:layout_toLeftOf="@+id/tvIntegral"
-                android:text="当前积分:"
-                android:textColor="@color/text_2"
-                android:textSize="@dimen/text_2"
-                android:textStyle="bold" />
-        </RelativeLayout>
+        app:layout_constraintTop_toBottomOf="@+id/clHead">
 
         <RelativeLayout
             android:id="@+id/rlCollect"
@@ -175,21 +175,27 @@
             android:paddingRight="@dimen/set_padding">
 
             <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:padding="3dp"
-                android:src="@mipmap/collect" />
+                android:background="@mipmap/collect"
+                android:backgroundTint="@color/theme"
+                android:padding="3dp" />
 
             <TextView
                 style="@style/text_1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:drawableRight="@mipmap/arrow_right"
-                android:text="我的收藏"
-                android:textStyle="bold" />
+                android:layout_marginStart="40dp"
+                android:text="我的收藏" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/arrow_right" />
 
         </RelativeLayout>
 
@@ -202,21 +208,27 @@
             android:paddingRight="@dimen/set_padding">
 
             <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:padding="2dp"
-                android:src="@mipmap/my_article" />
+                android:background="@mipmap/my_article"
+                android:backgroundTint="@color/theme"
+                android:padding="2dp" />
 
             <TextView
                 style="@style/text_1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:drawableRight="@mipmap/arrow_right"
-                android:text="我的文章"
-                android:textStyle="bold" />
+                android:layout_marginStart="40dp"
+                android:text="我的文章" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/arrow_right" />
         </RelativeLayout>
 
         <View
@@ -234,21 +246,27 @@
             android:paddingRight="@dimen/set_padding">
 
             <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:padding="2dp"
-                android:src="@mipmap/website" />
+                android:background="@mipmap/website"
+                android:backgroundTint="@color/theme"
+                android:padding="2dp" />
 
             <TextView
                 style="@style/text_1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:drawableRight="@mipmap/arrow_right"
-                android:text="网站"
-                android:textStyle="bold" />
+                android:layout_marginStart="40dp"
+                android:text="网站" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/arrow_right" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -260,21 +278,27 @@
             android:paddingRight="@dimen/set_padding">
 
             <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:padding="2dp"
-                android:src="@mipmap/girl" />
+                android:background="@mipmap/girl"
+                android:backgroundTint="@color/theme"
+                android:padding="2dp" />
 
             <TextView
                 style="@style/text_1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:drawableRight="@mipmap/arrow_right"
-                android:text="轻松一下"
-                android:textStyle="bold" />
+                android:layout_marginStart="40dp"
+                android:text="轻松一下" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/arrow_right" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -286,20 +310,26 @@
             android:paddingRight="@dimen/set_padding">
 
             <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/set" />
+                android:background="@mipmap/set"
+                android:backgroundTint="@color/theme" />
 
             <TextView
                 style="@style/text_1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:drawableRight="@mipmap/arrow_right"
-                android:text="设置"
-                android:textStyle="bold" />
+                android:layout_marginStart="40dp"
+                android:text="设置" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/arrow_right" />
         </RelativeLayout>
 
     </LinearLayout>
