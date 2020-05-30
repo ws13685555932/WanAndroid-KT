@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.login.LoginActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/theme"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/ivBack"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/gradient"
+        app:layout_constraintTop_toBottomOf="@id/rlToolBar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_left"
+        android:layout_marginBottom="10dp"
+        android:text="账号"
+        android:textColor="@color/text_2"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/etUsername" />
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/padding_left"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="@dimen/padding_right"
+        android:background="@drawable/bg_text"
+        android:hint="请输入账号"
+        android:paddingLeft="8dp"
+        android:textColor="@color/text_2"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/rlToolBar" />
+
+    <ImageView
+        android:id="@+id/ivClear"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:src="@mipmap/username_clear"
+        app:layout_constraintBottom_toBottomOf="@+id/etUsername"
+        app:layout_constraintRight_toRightOf="@+id/etUsername"
+        app:layout_constraintTop_toTopOf="@+id/etUsername" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_left"
+        android:layout_marginBottom="10dp"
+        android:text="密码"
+        android:textColor="@color/text_2"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/etPassword" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/padding_left"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="@dimen/padding_right"
+        android:background="@drawable/bg_text"
+        android:hint="请输入密码"
+        android:paddingLeft="8dp"
+        android:textColor="@color/text_2"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/etUsername" />
+
+    <ImageView
+        android:id="@+id/ivShow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:src="@mipmap/password_show"
+        app:layout_constraintBottom_toBottomOf="@+id/etPassword"
+        app:layout_constraintRight_toRightOf="@+id/etPassword"
+        app:layout_constraintTop_toTopOf="@+id/etPassword" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/padding_left"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="@dimen/padding_right"
+        android:background="@drawable/bg_button"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/etPassword" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_left"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="@dimen/padding_right"
+        android:gravity="right"
+        android:text="还没有账号，去注册>>>"
+        android:textColor="@color/theme"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
