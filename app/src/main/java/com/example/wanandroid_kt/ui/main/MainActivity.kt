@@ -10,6 +10,7 @@ import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.base.AppBaseActivity
 import com.example.wanandroid_kt.base.IBasePresenter
 import com.example.wanandroid_kt.base.IBaseView
+import com.example.wanandroid_kt.net.RetrofitManager
 import com.example.wanandroid_kt.ui.main.discovery.DiscoveryFragment
 import com.example.wanandroid_kt.ui.main.home.HomeFragment
 import com.example.wanandroid_kt.ui.main.mine.MineFragment

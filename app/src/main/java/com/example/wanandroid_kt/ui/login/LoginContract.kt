@@ -5,10 +5,10 @@ import com.example.wanandroid_kt.base.IBaseView
 
 interface LoginContract {
     interface View : IBaseView{
-
+        fun loginSuccess()
     }
 
     interface Presenter<V> : IBasePresenter<View>{
-
+        fun login(username : String, password:String)
     }
 }
