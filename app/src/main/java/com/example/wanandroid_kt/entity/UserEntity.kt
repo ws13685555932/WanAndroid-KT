@@ -1,16 +1,18 @@
 package com.example.wanandroid_kt.entity
 
-data class UserEntity(
-    val admin: Boolean,
-    val email: String,
-    val icon: String,
-    val id: Int,
-    val nickname: String,
-    val password: String,
-    val publicName: String,
-    val token: String,
-    val type: Int,
-    val username: String,
-    val collectIds: MutableList<Int>,
-    val chapterTops: List<Any>
-)
+import java.io.Serializable
+
+class UserEntity : Serializable {
+    var admin: Boolean = false
+    var email: String? = null
+    var icon: String? = null
+    var id: Int = 0
+    var nickname: String? = null
+    var password: String? = null
+    var publicName: String? = null
+    var token: String? = null
+    var type: Int = 0
+    var username: String? = null
+    var chapterTops: List<*>? = null
+    var collectIds: List<Int>? = null
+}

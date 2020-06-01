@@ -21,16 +21,18 @@ abstract class AppBaseActivity <P:IBasePresenter<*>> : BaseActivity<P>(), IBaseV
     }
 
     override fun onError(error: String) {
+        hideLoadingDialog()
+        error.toast()
     }
 
-    fun show(@StringRes messageResId: String){
+    fun showLoadingDialog(@StringRes messageResId: Int){
         if ( ! this::dialog.isInitialized){
             dialog = LoadingDialog.newInstance()
         }
         dialog.show(supportFragmentManager, messageResId, false)
     }
 
-    fun hideDialog(){
+    fun hideLoadingDialog(){
         if (this::dialog.isInitialized && dialog.isVisible){
             dialog.dismiss()
         }
