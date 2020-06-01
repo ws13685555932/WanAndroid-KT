@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@id/etUsername" />
 
     <ImageView
-        android:id="@+id/ivShow"
+        android:id="@+id/ivHidePassword"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="10dp"
@@ -121,6 +121,7 @@
         app:layout_constraintTop_toBottomOf="@id/etPassword" />
 
     <TextView
+        android:id="@+id/tvRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/padding_left"

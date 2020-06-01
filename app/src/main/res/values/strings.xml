@@ -8,5 +8,9 @@
     <string name="tab_3">广场</string>
     <string name="tab_4">公众号</string>
     <string name="tab_5">我的</string>
-    <string name="loading">加载中...</string>
+    <string name="loading">加载中…</string>
+    <string name="logining">登录中…</string>
+    <string name="login_success">登录成功！</string>
+    <string name="please_input_username">请输入账号</string>
+    <string name="please_input_password">请输入密码</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.wanandroid_kt.base
 
 import android.content.Context
 import android.os.Bundle
+import androidx.annotation.StringRes
 import com.example.wanandroid_kt.ext.toast
 import com.example.wanandroid_kt.view.LoadingDialog
 
@@ -22,11 +23,11 @@ abstract class AppBaseActivity <P:IBasePresenter<*>> : BaseActivity<P>(), IBaseV
     override fun onError(error: String) {
     }
 
-    fun showDialog(message : String){
+    fun show(@StringRes messageResId: String){
         if ( ! this::dialog.isInitialized){
             dialog = LoadingDialog.newInstance()
         }
-        dialog.showDialog(supportFragmentManager, message, false)
+        dialog.show(supportFragmentManager, messageResId, false)
     }
 
     fun hideDialog(){

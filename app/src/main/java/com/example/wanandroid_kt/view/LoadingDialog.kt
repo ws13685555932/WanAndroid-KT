@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.example.wanandroid_kt.R
 import kotlinx.android.synthetic.main.dialog_loading.*
 
 class LoadingDialog : DialogFragment(){
-    private var message : String? = null
+    private val TAG = "LoadingDialog"
+    private var messageResId : Int? = null
 
     companion object{
         fun newInstance() = LoadingDialog()
@@ -26,18 +28,18 @@ class LoadingDialog : DialogFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        tvMessage.text = getString(messageResId ?: R.string.loading)
-        tvMessage.text = message?:"加载中"
+        tvMessage.text = getString(messageResId ?: R.string.loading)
+//        tvMessage.text = message?:"加载中"
     }
 
-    fun showDialog(
+    fun show(
         fragmentManager: FragmentManager,
-        message:String,
+        @StringRes messageResId: Int,
         isCancelable:Boolean = false
     ){
-        this.message = message
+        this.messageResId = messageResId
         this.isCancelable = isCancelable
-        show(fragmentManager, "loading dialog")
+        show(fragmentManager, TAG)
     }
 
 
