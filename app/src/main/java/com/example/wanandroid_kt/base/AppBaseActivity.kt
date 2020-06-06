@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.StringRes
-import com.example.wanandroid_kt.entity.LoginEvent
+import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.ext.toast
 import com.example.wanandroid_kt.ui.login.LoginActivity
 import com.example.wanandroid_kt.utils.AppUtil
@@ -14,17 +14,17 @@ abstract class AppBaseActivity <P:IBasePresenter<*>> : BaseActivity<P>(), IBaseV
 
     private lateinit var dialog : LoadingDialog
 
-    protected fun goto(clazz: Class<*>, isLogin:Boolean){
+    protected fun goto(clazz: Class<*>, needLogin:Boolean){
         //需要登录&&未登录
-        if (isLogin && !AppUtil.isLogin()) {
+        if (needLogin && !AppUtil.isLogin()) {
             startActivity(Intent(this, LoginActivity::class.java))
         }else{
             startActivity(Intent(this,clazz))
         }
     }
 
-    protected fun goto(clazz: Class<*>, isLogin: Boolean, bundle: Bundle){
-        if (isLogin && !AppUtil.isLogin()){
+    protected fun goto(clazz: Class<*>, needLogin: Boolean, bundle: Bundle){
+        if (needLogin && !AppUtil.isLogin()){
             startActivity(Intent(this, LoginActivity::class.java))
         }else{
             startActivity(Intent(this, clazz).apply {
@@ -42,7 +42,7 @@ abstract class AppBaseActivity <P:IBasePresenter<*>> : BaseActivity<P>(), IBaseV
         error.toast()
     }
 
-    fun showLoadingDialog(@StringRes messageResId: Int){
+    fun showLoadingDialog(@StringRes messageResId : Int = R.string.loading){
         if ( ! this::dialog.isInitialized){
             dialog = LoadingDialog.newInstance()
         }

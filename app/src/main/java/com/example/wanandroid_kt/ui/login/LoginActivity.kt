@@ -7,6 +7,7 @@ import com.example.wanandroid_kt.base.AppBaseActivity
 import com.example.wanandroid_kt.const.SaveConstants
 import com.example.wanandroid_kt.entity.UserEntity
 import com.example.wanandroid_kt.ext.toast
+import com.example.wanandroid_kt.ui.register.RegisterActivity
 import com.example.wanandroid_kt.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -45,7 +46,7 @@ class LoginActivity : AppBaseActivity<LoginContract.Presenter<LoginContract.View
         }
 
         tvRegister.setOnClickListener {
-
+            goto(RegisterActivity::class.java, false)
         }
 
         ivBack.setOnClickListener { finish() }

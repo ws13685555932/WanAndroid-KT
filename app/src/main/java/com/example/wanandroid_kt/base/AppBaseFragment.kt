@@ -7,18 +7,18 @@ import com.example.wanandroid_kt.utils.AppUtil
 
 abstract class AppBaseFragment<P : IBasePresenter<*>> : BaseFragment<P>() {
 
-    protected fun goto(clazz: Class<*>, isLogin : Boolean){
+    protected fun goto(clazz: Class<*>, needLogin : Boolean){
         //需要登录&&未登录
-        if (isLogin && !AppUtil.isLogin()) {
+        if (needLogin && !AppUtil.isLogin()) {
             startActivity(Intent(context, LoginActivity::class.java))
         }else{
             startActivity(Intent(context,clazz))
         }
     }
 
-    protected fun goto(clazz: Class<*>, isLogin: Boolean, bundle: Bundle){
+    protected fun goto(clazz: Class<*>, needLogin: Boolean, bundle: Bundle){
         //需要登录&&未登录
-        if (isLogin && !AppUtil.isLogin()) {
+        if (needLogin && !AppUtil.isLogin()) {
             startActivity(Intent(context, LoginActivity::class.java))
         }else{
             startActivity(Intent(context, clazz).apply {

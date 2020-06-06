@@ -8,9 +8,9 @@ import com.example.wanandroid_kt.utils.AppUtil
 
 abstract class AppLazyFragment<P : IBasePresenter<*>> : LazyFragment<P>(), IBaseView {
 
-    protected fun goto(clazz:Class<*>, isLogin:Boolean){
+    protected fun goto(clazz:Class<*>, needLogin:Boolean){
         //需要登录&&未登录
-        if (isLogin && !AppUtil.isLogin()) {
+        if (needLogin && !AppUtil.isLogin()) {
             startActivity(Intent(context, LoginActivity::class.java))
         }else{
             startActivity(Intent(context,clazz))
@@ -19,11 +19,11 @@ abstract class AppLazyFragment<P : IBasePresenter<*>> : LazyFragment<P>(), IBase
 
     /**
      * 携带bundle跳转
-     * @param isLogin 启动界面是否需要登录
+     * @param needLogin 启动界面是否需要登录
      */
-    protected fun goto(bundle: Bundle, clazz:Class<*>, isLogin:Boolean){
+    protected fun goto(bundle: Bundle, clazz:Class<*>, needLogin:Boolean){
         //需要登录&&未登录
-        if (isLogin && !AppUtil.isLogin()) {
+        if (needLogin && !AppUtil.isLogin()) {
             startActivity(Intent(context, LoginActivity::class.java))
         }else{
             startActivity(Intent(context, clazz).apply {

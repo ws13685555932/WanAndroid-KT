@@ -31,7 +31,9 @@ abstract class ApiCallBack <T> : Observer<BaseResponse<T>> {
             "数据异常"
         }else if (e is ConnectException){
             "连接超时"
-        }else {
+        }else if (e is ApiException){
+            e.message?:"未知错误"
+        } else {
             "未知错误"
         }
         error(errorMsg)
