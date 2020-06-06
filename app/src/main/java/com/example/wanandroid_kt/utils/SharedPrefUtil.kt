@@ -8,7 +8,7 @@ import com.example.wanandroid_kt.ext.log
 import java.io.*
 import java.lang.IllegalArgumentException
 
-object PrefUtil {
+object SharedPrefUtil {
     private const val TAG : String = "sharedPreference"
     private const val DATA_FILE = "data"
 

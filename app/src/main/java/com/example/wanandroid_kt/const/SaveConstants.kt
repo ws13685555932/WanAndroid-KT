@@ -1,6 +1,6 @@
 package com.example.wanandroid_kt.const
 
-object Const{
+object SaveConstants{
 
     const val USER_INFO = "userInfo"
 

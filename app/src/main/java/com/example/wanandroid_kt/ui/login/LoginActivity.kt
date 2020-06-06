@@ -4,13 +4,11 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.base.AppBaseActivity
-import com.example.wanandroid_kt.const.Const
+import com.example.wanandroid_kt.const.SaveConstants
 import com.example.wanandroid_kt.entity.UserEntity
-import com.example.wanandroid_kt.ext.log
 import com.example.wanandroid_kt.ext.toast
-import com.example.wanandroid_kt.utils.PrefUtil
+import com.example.wanandroid_kt.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.fragment_mine.*
 
 /**需求：
  * - password明文切换
@@ -77,7 +75,7 @@ class LoginActivity : AppBaseActivity<LoginContract.Presenter<LoginContract.View
 
     override fun loginSuccess(t: UserEntity) {
         hideLoadingDialog()
-        PrefUtil.saveValue(Const.IS_LOGIN, true)
+        SharedPrefUtil.saveValue(SaveConstants.IS_LOGIN, true)
         R.string.login_success.toast()
         finish()
     }
