@@ -37,6 +37,11 @@ object PrefUtil {
         }
     }
 
+    fun removeKey(key: String): Boolean {
+        val sp = MyApplication.context.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
+        return sp.edit().remove(key).commit()
+    }
+
     fun saveObject(key: String, value: Any?) {
         if (value == null) {
             return

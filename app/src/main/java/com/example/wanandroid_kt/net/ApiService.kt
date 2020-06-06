@@ -1,5 +1,6 @@
 package com.example.wanandroid_kt.net
 
+import com.example.wanandroid_kt.entity.IntegralEntity
 import com.example.wanandroid_kt.entity.UserEntity
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -41,12 +42,12 @@ interface ApiService {
 //    fun getCollectData(@Path("page") pageNo: Int):
 //            Observable<BaseResponse<CollectEntity>>
 //
-//    /**
-//     * 获取个人积分
-//     */
-//    @GET("/lg/coin/userinfo/json")
-//    fun getIntegral():Observable<BaseResponse<IntegralEntity>>
-//
+    /**
+     * 获取个人积分
+     */
+    @GET("/lg/coin/userinfo/json")
+    fun getIntegral():Observable<BaseResponse<IntegralEntity>>
+
 //    /**
 //     * 收藏
 //     */

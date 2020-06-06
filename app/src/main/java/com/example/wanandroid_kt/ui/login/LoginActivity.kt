@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_mine.*
  * - 注册界面跳转
  * - 登录时显示dialog
  */
-//todo:未处理login failed的情况.
 
 class LoginActivity : AppBaseActivity<LoginContract.Presenter<LoginContract.View>>(), LoginContract.View {
 
@@ -45,7 +44,6 @@ class LoginActivity : AppBaseActivity<LoginContract.Presenter<LoginContract.View
                     presenter?.login(username, password)
                 }
             }
-
         }
 
         tvRegister.setOnClickListener {
