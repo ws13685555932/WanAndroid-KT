@@ -6,6 +6,7 @@ import com.example.wanandroid_kt.base.AppLazyFragment
 import com.example.wanandroid_kt.const.SaveConstants
 import com.example.wanandroid_kt.entity.IntegralEntity
 import com.example.wanandroid_kt.entity.LoginEvent
+import com.example.wanandroid_kt.ui.coin.CoinActivity
 import com.example.wanandroid_kt.ui.login.LoginActivity
 import com.example.wanandroid_kt.utils.AppUtil
 import com.example.wanandroid_kt.utils.SharedPrefUtil
@@ -58,6 +59,9 @@ class MineFragment : AppLazyFragment<MineContract.Presenter<MineContract.View>>(
             goto(LoginActivity::class.java, true)
         }
 
+        llCoin.setOnClickListener {
+            goto(CoinActivity::class.java, false)
+        }
     }
 
     override fun createPresenter(): MineContract.Presenter<MineContract.View>? {
