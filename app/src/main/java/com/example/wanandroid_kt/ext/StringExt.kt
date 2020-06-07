@@ -10,5 +10,5 @@ fun String.toast(duration: Int = Toast.LENGTH_SHORT){
 }
 
 fun String.log(){
-    Log.d("app", this)
+    Log.d("myapp", this)
 }

@@ -1,17 +1,12 @@
 package com.example.wanandroid_kt.view//package com.example.wanandroid_kt.view
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.*
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
 import android.util.AttributeSet
 import android.view.View
-import android.view.View.MeasureSpec
 import androidx.annotation.Nullable
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.ColorUtils
 import com.example.wanandroid_kt.R
+import com.example.wanandroid_kt.ext.log
 import com.example.wanandroid_kt.utils.ColorUtil
 
 
@@ -21,16 +16,17 @@ class ScoreView : View {
     private lateinit var mTextPaint: Paint
     private lateinit var mFillPaint: Paint
     private var progress = 0
-    var total = 100
-    private val margin = 30
-    private var level = 0
+    private var total = 100
+    private val margin = 30F
     private var gradient: SweepGradient? = null
     private val mMatrix: Matrix = Matrix()
-    var centerX = 0F
-    var radius = 220F
-    var centerY = 0F
-    private var isAnim = false
-    private var isError = false
+    private var centerX = 0F
+    private var centerY = 0F
+    private var radius = 220F
+
+    private val totalAngle = 270F
+    private val startAngle = 135F
+    private var sweepAngle = 0F
 
     constructor(context: Context) : super(context) {
         initData(context)
@@ -48,6 +44,7 @@ class ScoreView : View {
         initData(context)
     }
 
+
     private fun initData(context: Context) {
         defaultSize = dp2px(defaultSize)
         mPaint = Paint()
@@ -55,7 +52,7 @@ class ScoreView : View {
             color = ColorUtil.getColor(R.color.white)
             style = Paint.Style.STROKE
             strokeWidth = 30F
-            isAntiAlias =true
+            isAntiAlias = true
             strokeCap = Paint.Cap.ROUND
         }
 
@@ -107,71 +104,35 @@ class ScoreView : View {
         gradient!!.setLocalMatrix(mMatrix)
     }
 
-    var currAngle = 0F
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (isError) {
-            isAnim = false
-        }
-        val ratio = calculateRatio()
-        val sweepAngle = (ratio * 270)
-        drawMaxAndProgress(canvas, sweepAngle)
-        drawLittleIndicator(canvas, sweepAngle)
-        drawScore(canvas, sweepAngle, ratio)
+        val ratio : Float = calculateRatio()
+        sweepAngle = ratio * totalAngle
+        drawTotalAndProgress(canvas)
+        drawIndicator(canvas)
+        drawScore(canvas)
+        drawTintText(canvas)
 //        drawLevel(canvas)
-        if (isAnim) {
-            currAngle += 15
-            postInvalidateDelayed(20)
-        }
     }
 
-    private fun drawLevel(canvas: Canvas) {
-        mTextPaint.setTextSize(50F)
-        val fmBottom: Paint.FontMetrics = mTextPaint.getFontMetrics()
-        val heightfmBottom: Float = fmBottom.bottom - fmBottom.top
-        val baseLinefmBottom =
-            (heightfmBottom / 2 - fmBottom.bottom + centerY + radius * 0.707 + margin) as Float
-        if (isError) {
-            canvas.drawText("Lv.?", centerX, baseLinefmBottom, mTextPaint)
-        } else {
-            canvas.drawText("Lv.$level", centerX, baseLinefmBottom, mTextPaint)
-        }
+    private fun calculateRatio(): Float {
+        return (progress * 1.0 / total).toFloat()
     }
 
-    private fun drawScore(canvas: Canvas, sweepAngle: Float, ratio: Float) {
-        mTextPaint.setTextSize(100F)
-        val fm: Paint.FontMetrics = mTextPaint.getFontMetrics()
-        val height: Float = fm.bottom - fm.top
-        val baseLine: Float = height / 2 - fm.bottom + centerY
-        if (currAngle < sweepAngle && isAnim) {
-            canvas.drawText(
-                "" + (total * (currAngle * 1.0 / 270)).toInt(),
-                centerX,
-                baseLine,
-                mTextPaint
+    private fun drawTotalAndProgress(canvas: Canvas) {
+        mPaint.color = ColorUtil.getColor(R.color.white_trans)
+        canvas.drawArc(
+            RectF(
+                (centerX - radius),
+                (centerY - radius),
+                (centerX + radius),
+                (centerY + radius)
             )
-        } else if (isError) {
-            canvas.drawText("???", centerX, baseLine, mTextPaint)
-        } else {
-            canvas.drawText("" + (total * ratio).toInt(), centerX, baseLine, mTextPaint)
-        }
-    }
-
-    private fun drawLittleIndicator(canvas: Canvas, sweepAngle: Float) {
-        canvas.save()
-        canvas.translate(centerX, centerY)
-        canvas.rotate(-135F)
-        if (currAngle < sweepAngle && isAnim) {
-            canvas.rotate(currAngle)
-        } else {
-            canvas.rotate(sweepAngle)
-        }
-        canvas.drawCircle(0F, -radius, 10F, mFillPaint)
-        canvas.restore()
-    }
-
-    private fun drawMaxAndProgress(canvas: Canvas, sweepAngle: Float) {
-        mPaint.setColor(getResources().getColor(R.color.white_trans))
+            , startAngle, totalAngle, false, mPaint
+        )
+        mPaint.color = ColorUtil.getColor(R.color.white)
+//        mPaint.shader = gradient
         canvas.drawArc(
             RectF(
                 (centerX - radius).toFloat(),
@@ -179,73 +140,74 @@ class ScoreView : View {
                 (centerX + radius).toFloat(),
                 (centerY + radius).toFloat()
             )
-            , 135F, 270F, false, mPaint
+            , startAngle, sweepAngle, false, mPaint
         )
-        mPaint.setColor(getResources().getColor(R.color.white))
-        //        mPaint.setShader(gradient);
-        if (currAngle < sweepAngle && isAnim) {
-            canvas.drawArc(
-                RectF(
-                    (centerX - radius).toFloat(),
-                    (centerY - radius).toFloat(),
-                    (centerX + radius).toFloat(),
-                    (centerY + radius).toFloat()
-                )
-                , 135F, currAngle, false, mPaint
-            )
-        } else {
-            isAnim = false
-            canvas.drawArc(
-                RectF(
-                    (centerX - radius).toFloat(),
-                    (centerY - radius).toFloat(),
-                    (centerX + radius).toFloat(),
-                    (centerY + radius).toFloat()
-                )
-                , 135F, sweepAngle, false, mPaint
-            )
-        }
+
     }
 
-    private fun calculateRatio(): Float {
-        var ratio = 0f
-        if (total != 0) {
-            ratio = (progress * 1.0 / total).toFloat()
-        }
-        return ratio
+    private fun drawIndicator(canvas: Canvas) {
+        canvas.save()
+        canvas.translate(centerX, centerY)
+        canvas.rotate(-135F)
+        canvas.rotate(sweepAngle)
+        canvas.drawCircle(0F, -radius, 10F, mFillPaint)
+        canvas.restore()
     }
+
+//    private fun drawLevel(canvas: Canvas) {
+//        mTextPaint.setTextSize(50F)
+//        val fmBottom: Paint.FontMetrics = mTextPaint.getFontMetrics()
+//        val heightfmBottom: Float = fmBottom.bottom - fmBottom.top
+//        val baseLinefmBottom =
+//            (heightfmBottom / 2 - fmBottom.bottom + centerY + radius * 0.707 + margin) as Float
+//        canvas.drawText("Lv.$level", centerX, baseLinefmBottom, mTextPaint)
+//    }
+
+    private fun drawScore(canvas: Canvas) {
+        mTextPaint.textSize = 100F
+        val fm: Paint.FontMetrics = mTextPaint.getFontMetrics()
+        val height: Float = fm.bottom - fm.top
+        val baseLine: Float = height / 2 - fm.bottom + centerY
+
+        canvas.drawText(
+            progress.toString(),
+            centerX,
+            baseLine,
+            mTextPaint
+        )
+    }
+
+    private fun drawTintText(canvas: Canvas) {
+        mTextPaint.textSize = 50F
+        mTextPaint.color = ColorUtil.getColor(R.color.light_pink)
+        val fmBottom: Paint.FontMetrics = mTextPaint.fontMetrics
+        val heightfmBottom: Float = fmBottom.bottom - fmBottom.top
+        val baseLinefmBottom = heightfmBottom / 2 - fmBottom.bottom + centerY + radius * 0.707
+        canvas.drawText("我的积分", centerX, baseLinefmBottom.toFloat(), mTextPaint)
+    }
+
+
 
     fun dp2px(values: Int): Int {
         val density: Float = getResources().getDisplayMetrics().density
         return (values * density + 0.5f).toInt()
     }
 
-    fun getProgress(): Int {
+    fun getCoin(): Int {
         return progress
     }
 
-    fun setProgress(progress: Int) {
-        this.progress = progress
+    fun setCoin(coin: Int){
+        this.progress = coin
         postInvalidate()
     }
 
-    fun getLevel(): Int {
-        return level
+    fun setMaxCoin(coin : Int){
+        total = coin
     }
 
-    fun setLevel(level: Int) {
-        this.level = level
-        postInvalidate()
+    fun getMaxCoin() : Int{
+        return total
     }
 
-    fun startAnim() {
-        isAnim = true
-        currAngle = 0F
-        postInvalidate()
-    }
-
-    fun isError(isError: Boolean) {
-        this.isError = isError
-        postInvalidate()
-    }
 }
