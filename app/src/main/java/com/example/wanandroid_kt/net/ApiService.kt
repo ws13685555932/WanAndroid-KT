@@ -1,5 +1,7 @@
 package com.example.wanandroid_kt.net
 
+import com.example.wanandroid_kt.entity.CoinRecord
+import com.example.wanandroid_kt.entity.CoinWrapper
 import com.example.wanandroid_kt.entity.IntegralEntity
 import com.example.wanandroid_kt.entity.UserEntity
 import io.reactivex.Observable
@@ -120,11 +122,11 @@ interface ApiService {
 //    @GET("/coin/rank/{pageNum}/json")
 //    fun getRank(@Path("pageNum")pageNum: Int) : Observable<BaseResponse<RankEntity>>
 //
-//    /**
-//     * 积分记录
-//     */
-//    @GET("/lg/coin/list/{pageNum}/json")
-//    fun getIntegralRecord(@Path("pageNum")pageNum: Int) : Observable<BaseResponse<IntegralRecordEntity>>
+    /**
+     * 积分记录
+     */
+    @GET("/lg/coin/list/{pageNum}/json")
+    fun getIntegralRecord(@Path("pageNum")pageNum: Int) : Observable<BaseResponse<CoinWrapper<CoinRecord>>>
 //
 //    /**
 //     * 我分享的文章

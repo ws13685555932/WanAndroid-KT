@@ -33,12 +33,11 @@
             android:textSize="18sp" />
     </RelativeLayout>
 
-    <com.example.wanandroid_kt.view.ScoreView
-        android:id="@+id/svScore"
-        android:background="@color/colorPrimary"
-        app:layout_constraintTop_toBottomOf="@id/rlToolBar"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCoinList"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/rlToolBar"/>
 
 <!--    <View-->
 <!--        android:layout_width="match_parent"-->

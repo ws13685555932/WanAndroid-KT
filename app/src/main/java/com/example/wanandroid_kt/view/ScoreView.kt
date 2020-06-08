@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.Nullable
 import com.example.wanandroid_kt.R
+import com.example.wanandroid_kt.ext.getColor
 import com.example.wanandroid_kt.ext.log
 import com.example.wanandroid_kt.utils.ColorUtil
 
@@ -49,7 +50,7 @@ class ScoreView : View {
         defaultSize = dp2px(defaultSize)
         mPaint = Paint()
         mPaint.apply {
-            color = ColorUtil.getColor(R.color.white)
+            color = R.color.white.getColor()
             style = Paint.Style.STROKE
             strokeWidth = 30F
             isAntiAlias = true
@@ -58,7 +59,7 @@ class ScoreView : View {
 
         mFillPaint = Paint()
         mFillPaint.apply {
-            color = ColorUtil.getColor(R.color.colorAccent)
+            color = R.color.colorAccent.getColor()
             style = Paint.Style.FILL
             isAntiAlias = true
         }
@@ -68,7 +69,7 @@ class ScoreView : View {
             isAntiAlias = true
             textAlign = Paint.Align.CENTER
             textSize = 100F
-            color = ColorUtil.getColor(R.color.white)
+            color = R.color.white.getColor()
         }
     }
 
@@ -97,8 +98,8 @@ class ScoreView : View {
         super.onSizeChanged(w, h, oldw, oldh)
         centerX = (width / 2).toFloat()
         centerY = (height / 2).toFloat()
-        val white: Int = ColorUtil.getColor(R.color.white)
-        val whiteTrans: Int = ColorUtil.getColor(R.color.white_trans)
+        val white: Int = R.color.white.getColor()
+        val whiteTrans: Int = R.color.white_trans.getColor()
         gradient = SweepGradient(centerX, centerY, whiteTrans, white)
         mMatrix.setRotate(90F, centerX, centerY) //旋转mRotate度,圆心为(x,y)
         gradient!!.setLocalMatrix(mMatrix)
@@ -121,7 +122,7 @@ class ScoreView : View {
     }
 
     private fun drawTotalAndProgress(canvas: Canvas) {
-        mPaint.color = ColorUtil.getColor(R.color.white_trans)
+        mPaint.color = R.color.white_trans.getColor()
         canvas.drawArc(
             RectF(
                 (centerX - radius),
@@ -131,7 +132,7 @@ class ScoreView : View {
             )
             , startAngle, totalAngle, false, mPaint
         )
-        mPaint.color = ColorUtil.getColor(R.color.white)
+        mPaint.color = R.color.white.getColor()
 //        mPaint.shader = gradient
         canvas.drawArc(
             RectF(
@@ -165,6 +166,7 @@ class ScoreView : View {
 
     private fun drawScore(canvas: Canvas) {
         mTextPaint.textSize = 100F
+        mTextPaint.color = R.color.white.getColor()
         val fm: Paint.FontMetrics = mTextPaint.getFontMetrics()
         val height: Float = fm.bottom - fm.top
         val baseLine: Float = height / 2 - fm.bottom + centerY
@@ -179,7 +181,7 @@ class ScoreView : View {
 
     private fun drawTintText(canvas: Canvas) {
         mTextPaint.textSize = 50F
-        mTextPaint.color = ColorUtil.getColor(R.color.light_pink)
+        mTextPaint.color = R.color.light_pink.getColor()
         val fmBottom: Paint.FontMetrics = mTextPaint.fontMetrics
         val heightfmBottom: Float = fmBottom.bottom - fmBottom.top
         val baseLinefmBottom = heightfmBottom / 2 - fmBottom.bottom + centerY + radius * 0.707
