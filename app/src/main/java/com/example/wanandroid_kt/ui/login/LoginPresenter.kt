@@ -6,7 +6,7 @@ import com.example.wanandroid_kt.entity.LoginEvent
 import com.example.wanandroid_kt.entity.UserEntity
 import com.example.wanandroid_kt.net.ApiCallBack
 import com.example.wanandroid_kt.net.RetrofitManager
-import com.example.wanandroid_kt.net.SchedulerUtils
+import com.example.wanandroid_kt.net.SchedulerUtil
 import com.example.wanandroid_kt.utils.SharedPrefUtil
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
@@ -17,7 +17,7 @@ class LoginPresenter(view:LoginContract.View) :BasePresenter<LoginContract.View>
         override fun login(username: String, password: String) {
                 RetrofitManager.service
                         .login(username, password)
-                        .compose(SchedulerUtils.ioToMain())
+                        .compose(SchedulerUtil.ioToMain())
                         .subscribe(object : ApiCallBack<UserEntity>() {
                                 override fun disposible(d: Disposable) {
                                         addSubscrible(d)

@@ -2,7 +2,7 @@ package com.example.wanandroid_kt.entity
 
 import java.io.Serializable
 
-class IntegralEntity: Serializable {
+class CoinEntity: Serializable {
 
     /**
      * coinCount : 451

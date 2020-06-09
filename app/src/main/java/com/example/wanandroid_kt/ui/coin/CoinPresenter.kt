@@ -3,10 +3,10 @@ package com.example.wanandroid_kt.ui.coin
 import com.example.wanandroid_kt.base.BasePresenter
 import com.example.wanandroid_kt.entity.CoinRecord
 import com.example.wanandroid_kt.entity.CoinWrapper
-import com.example.wanandroid_kt.entity.IntegralEntity
+import com.example.wanandroid_kt.entity.CoinEntity
 import com.example.wanandroid_kt.net.ApiCallBack
 import com.example.wanandroid_kt.net.RetrofitManager
-import com.example.wanandroid_kt.net.SchedulerUtils
+import com.example.wanandroid_kt.net.SchedulerUtil
 import io.reactivex.disposables.Disposable
 
 class CoinPresenter (view : CoinContract.View) : BasePresenter<CoinContract.View> ( view),
@@ -14,7 +14,7 @@ class CoinPresenter (view : CoinContract.View) : BasePresenter<CoinContract.View
         override fun getIntegralRecord(pageNum: Int) {
                 RetrofitManager.service
                         .getIntegralRecord(pageNum)
-                        .compose(SchedulerUtils.ioToMain())
+                        .compose(SchedulerUtil.ioToMain())
                         .subscribe(object : ApiCallBack<CoinWrapper<CoinRecord>>(){
                                 override fun disposible(d: Disposable) {
                                         addSubscrible(d)
@@ -34,13 +34,13 @@ class CoinPresenter (view : CoinContract.View) : BasePresenter<CoinContract.View
         override fun getIntegral() {
                 RetrofitManager.service
                         .getIntegral()
-                        .compose(SchedulerUtils.ioToMain())
-                        .subscribe(object  : ApiCallBack<IntegralEntity>(){
+                        .compose(SchedulerUtil.ioToMain())
+                        .subscribe(object  : ApiCallBack<CoinEntity>(){
                                 override fun disposible(d: Disposable) {
                                         addSubscrible(d)
                                 }
 
-                                override fun success(t: IntegralEntity) {
+                                override fun success(t: CoinEntity) {
                                         view?.showCoin(t.coinCount)
                                 }
 

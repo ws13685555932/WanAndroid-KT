@@ -36,10 +36,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCoinList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/rlToolBar"/>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rlToolBar"/>
 
-<!--    <View-->
+    <!--    <View-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="2dp"-->
 <!--        android:background="@drawable/gradient"-->

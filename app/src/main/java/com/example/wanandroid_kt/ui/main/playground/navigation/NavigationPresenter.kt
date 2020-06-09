@@ -1,37 +1,32 @@
-package com.example.wanandroid_kt.ui.main.mine
+package com.example.wanandroid_kt.ui.main.playground.navigation
 
 import com.example.wanandroid_kt.base.BasePresenter
-import com.example.wanandroid_kt.entity.CoinEntity
-import com.example.wanandroid_kt.ext.toast
+import com.example.wanandroid_kt.entity.NaviEntity
 import com.example.wanandroid_kt.net.ApiCallBack
 import com.example.wanandroid_kt.net.RetrofitManager
 import com.example.wanandroid_kt.net.SchedulerUtil
 import io.reactivex.disposables.Disposable
 
-class MinePresenter (view :MineContract.View) : BasePresenter<MineContract.View>(view),
-        MineContract.Presenter<MineContract.View>{
-
-        override fun getCoin() {
+class NavigationPresenter(view : NavigationContract.View) : BasePresenter<NavigationContract.View>(view),
+        NavigationContract.Presenter{
+        override fun getNavigations() {
                 RetrofitManager.service
-                        .getIntegral()
+                        .getNavigation()
                         .compose(SchedulerUtil.ioToMain())
-                        .subscribe(object : ApiCallBack<CoinEntity>(){
+                        .subscribe(object : ApiCallBack<MutableList<NaviEntity>>(){
                                 override fun disposible(d: Disposable) {
                                         addSubscrible(d)
                                 }
 
-                                override fun success(t: CoinEntity) {
-                                        view?.showCoin(t)
+                                override fun success(t: MutableList<NaviEntity>) {
+                                        view?.showList(t)
                                 }
 
                                 override fun error(errorMsg: String) {
-                                        errorMsg.toast()
                                         view?.onError(errorMsg)
                                 }
 
                         })
-
         }
-
 
 }

@@ -1,9 +1,11 @@
 package com.example.wanandroid_kt.view//package com.example.wanandroid_kt.view
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.DecelerateInterpolator
 import androidx.annotation.Nullable
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.ext.getColor
@@ -202,6 +204,19 @@ class ScoreView : View {
     fun setCoin(coin: Int){
         this.progress = coin
         postInvalidate()
+    }
+
+    fun setCoinWithAnim(coin: Int){
+        val animator = ValueAnimator.ofInt(0,coin)
+        //播放时长
+        animator.duration = 1500
+        animator.interpolator = DecelerateInterpolator()
+        animator.addUpdateListener { animation ->
+            //获取改变后的值
+            val currentValue = animation.animatedValue as Int
+            this.setCoin(currentValue)
+        }
+        animator.start()
     }
 
     fun setMaxCoin(coin : Int){

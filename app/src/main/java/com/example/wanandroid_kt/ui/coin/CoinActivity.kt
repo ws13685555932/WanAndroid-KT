@@ -8,7 +8,9 @@ import com.example.wanandroid_kt.adapter.CoinAdapter
 import com.example.wanandroid_kt.base.AppBaseActivity
 import com.example.wanandroid_kt.entity.CoinRecord
 import com.example.wanandroid_kt.entity.CoinWrapper
+import com.example.wanandroid_kt.view.ScoreView
 import kotlinx.android.synthetic.main.activity_coin.*
+import kotlinx.android.synthetic.main.header_my_coin.*
 
 
 class CoinActivity : AppBaseActivity<CoinContract.Presenter>(), CoinContract.View {
@@ -28,7 +30,8 @@ class CoinActivity : AppBaseActivity<CoinContract.Presenter>(), CoinContract.Vie
         mAdapter.setHeaderView(headView)
         rvCoinList.adapter = mAdapter
 
-        presenter?.getIntegralRecord(1)
+        presenter?.getIntegralRecord(0)
+        presenter?.getIntegral()
 
     }
 
@@ -59,7 +62,8 @@ class CoinActivity : AppBaseActivity<CoinContract.Presenter>(), CoinContract.Vie
     }
 
     override fun showCoin(t: Int) {
-        TODO("Not yet implemented")
+        svScore.setMaxCoin(1000)
+        svScore.setCoinWithAnim(t)
     }
 
 }

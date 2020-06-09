@@ -1,9 +1,6 @@
 package com.example.wanandroid_kt.net
 
-import com.example.wanandroid_kt.entity.CoinRecord
-import com.example.wanandroid_kt.entity.CoinWrapper
-import com.example.wanandroid_kt.entity.IntegralEntity
-import com.example.wanandroid_kt.entity.UserEntity
+import com.example.wanandroid_kt.entity.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -48,7 +45,7 @@ interface ApiService {
      * 获取个人积分
      */
     @GET("/lg/coin/userinfo/json")
-    fun getIntegral():Observable<BaseResponse<IntegralEntity>>
+    fun getIntegral():Observable<BaseResponse<CoinEntity>>
 
 //    /**
 //     * 收藏
@@ -96,11 +93,11 @@ interface ApiService {
 //    fun search(@Path("pageNum")pageNum:Int,@Query("k")k:String)
 //            : Observable<BaseResponse<ArticleEntity>>
 //
-//    /**
-//     * 体系
-//     */
-//    @GET("/tree/json")
-//    fun getSystemList() : Observable<BaseResponse<MutableList<SystemListEntity>>>
+    /**
+     * 体系
+     */
+    @GET("/tree/json")
+    fun getSystemList() : Observable<BaseResponse<MutableList<SystemEntity>>>
 //
 //
 //    /**
@@ -110,11 +107,11 @@ interface ApiService {
 //    fun getSystemArticle(@Path("pageNum")pageNum:Int,@Query("cid")cid:Int)
 //            : Observable<BaseResponse<ArticleEntity>>
 //
-//    /**
-//     * 导航
-//     */
-//    @GET("/navi/json")
-//    fun getNavigation() : Observable<BaseResponse<MutableList<NavigationEntity>>>
+    /**
+     * 导航
+     */
+    @GET("/navi/json")
+    fun getNavigation() : Observable<BaseResponse<MutableList<NaviEntity>>>
 //
 //    /**
 //     * 排名

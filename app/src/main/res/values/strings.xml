@@ -18,4 +18,8 @@
     <string name="please_input_confirm_password">请输入确认密码</string>
     <string name="password_not_same">两次输入密码不一致</string>
     <string name="registering">注册中…</string>
+    <string name="please_login">请登录</string>
+    <string name="default_id">id:</string>
+    <string name="system_tab">体系</string>
+    <string name="navigation_tab">导航</string>
 </resources>

@@ -6,7 +6,7 @@ import io.reactivex.schedulers.Schedulers.io
 
 
 
-object SchedulerUtils{
+object SchedulerUtil{
     fun <T> ioToMain(): IoMainScheduler<T> {
         return IoMainScheduler()
     }

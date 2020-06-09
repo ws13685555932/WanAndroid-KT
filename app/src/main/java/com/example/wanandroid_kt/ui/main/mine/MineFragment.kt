@@ -4,8 +4,10 @@ import android.os.Bundle
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.base.AppLazyFragment
 import com.example.wanandroid_kt.const.SaveConstants
-import com.example.wanandroid_kt.entity.IntegralEntity
+import com.example.wanandroid_kt.entity.CoinEntity
 import com.example.wanandroid_kt.entity.LoginEvent
+import com.example.wanandroid_kt.entity.UserEntity
+import com.example.wanandroid_kt.ext.str
 import com.example.wanandroid_kt.ui.coin.CoinActivity
 import com.example.wanandroid_kt.ui.login.LoginActivity
 import com.example.wanandroid_kt.utils.AppUtil
@@ -15,10 +17,13 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
+//todo : 可以先保存上一次的值，在上一次的值上进行变化
+
 class MineFragment : AppLazyFragment<MineContract.Presenter<MineContract.View>>(),
     MineContract.View {
 
-    private var integralEntity: IntegralEntity? = null
+    private var coinEntity: CoinEntity? = null
+    private var userEntity: UserEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,27 +36,36 @@ class MineFragment : AppLazyFragment<MineContract.Presenter<MineContract.View>>(
     }
 
     private fun initData() {
-        //先判断数据是否为空，然后再强转，否则会出异常
-        SharedPrefUtil.getObject(SaveConstants.INTEGRAL_INFO)?.let {
-            integralEntity = it as IntegralEntity
+        // 从本地获取名字和id
+        SharedPrefUtil.getObject(SaveConstants.USER_INFO)?.let {
+            userEntity = it as UserEntity
         }
-        if (integralEntity == null) {
-            if (AppUtil.isLogin()){
-                presenter?.loadIntegral()
-            }
+        if (userEntity != null){
+            setNameAndId()
+            presenter?.getCoin()
         }else{
-            setIntegral()
+            resetUI()
+        }
+
+    }
+
+    private fun setNameAndId(){
+        userEntity?.apply {
+            tvUserName.text = username
+            tvId.text = String.format("%s", "id:$id")
         }
     }
 
-    private fun setIntegral() {
-        integralEntity?.apply {
-            tvUserName.text = username
-            tvId.text = String.format("%s","id:$userId")
-            tvRank.text = rank.toString()
-            tvCoin.text = coinCount.toString()
-        }
+    private fun resetUI(){
+        tvUserName.text = R.string.please_login.str()
+        tvCoin.text = "0"
+        tvId.text = R.string.default_id.str()
+    }
 
+    override fun showCoin(t: CoinEntity) {
+        this.coinEntity = t
+        tvCoin.text = t.coinCount.toString()
+        tvRank.text = t.rank.toString()
     }
 
     private fun initEvent() {
@@ -82,14 +96,9 @@ class MineFragment : AppLazyFragment<MineContract.Presenter<MineContract.View>>(
 
     }
 
-    override fun showIntegral(t: IntegralEntity) {
-        this.integralEntity = t
-        setIntegral()
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        SharedPrefUtil.removeKey(SaveConstants.INTEGRAL_INFO)
+    override fun onDestroy() {
+        super.onDestroy()
         EventBus.getDefault().unregister(this)
     }
 
