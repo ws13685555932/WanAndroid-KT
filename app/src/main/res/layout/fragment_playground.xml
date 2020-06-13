@@ -10,6 +10,7 @@
         android:layout_height="?actionBarSize"
         android:background="@color/white"
         android:backgroundTint="@color/theme"
+        app:layout_constraintTop_toTopOf="parent"
         android:gravity="center_horizontal">
 
         <net.lucode.hackware.magicindicator.MagicIndicator

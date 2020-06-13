@@ -1,12 +1,15 @@
 package com.example.wanandroid_kt.ui.main.playground.systemlist
 
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.adapter.SystemAdapter
 import com.example.wanandroid_kt.base.AppLazyFragment
+import com.example.wanandroid_kt.const.Constants
 import com.example.wanandroid_kt.entity.SystemEntity
 import com.example.wanandroid_kt.ext.toast
+import com.example.wanandroid_kt.ui.system.SystemActivity
 import com.example.wanandroid_kt.view.OnSystemClickListener
 import kotlinx.android.synthetic.main.fragment_navigation.*
 import kotlinx.android.synthetic.main.fragment_systemlist.*
@@ -41,8 +44,13 @@ class SystemListFragment :AppLazyFragment<SystemListContract.Presenter>(), Syste
     }
 
     override fun onCollectClick(helper: BaseViewHolder, i: Int, j: Int) {
+        val id = systemList?.get(i)?.children?.get(j)?.id
         val title = systemList?.get(i)?.children?.get(j)?.name
-        title?.toast()
+
+        goto(Bundle().apply {
+            id?.let { putInt(Constants.SYSTEM_ID, it) }
+            putString(Constants.SYSTEM_TITLE, title)
+        }, SystemActivity::class.java,false)
     }
 
     override fun onError(error: String) {

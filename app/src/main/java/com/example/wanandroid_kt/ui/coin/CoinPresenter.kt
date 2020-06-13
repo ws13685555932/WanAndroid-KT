@@ -2,7 +2,7 @@ package com.example.wanandroid_kt.ui.coin
 
 import com.example.wanandroid_kt.base.BasePresenter
 import com.example.wanandroid_kt.entity.CoinRecord
-import com.example.wanandroid_kt.entity.CoinWrapper
+import com.example.wanandroid_kt.entity.Wrapper
 import com.example.wanandroid_kt.entity.CoinEntity
 import com.example.wanandroid_kt.net.ApiCallBack
 import com.example.wanandroid_kt.net.RetrofitManager
@@ -15,12 +15,12 @@ class CoinPresenter (view : CoinContract.View) : BasePresenter<CoinContract.View
                 RetrofitManager.service
                         .getIntegralRecord(pageNum)
                         .compose(SchedulerUtil.ioToMain())
-                        .subscribe(object : ApiCallBack<CoinWrapper<CoinRecord>>(){
+                        .subscribe(object : ApiCallBack<Wrapper<CoinRecord>>(){
                                 override fun disposible(d: Disposable) {
                                         addSubscrible(d)
                                 }
 
-                                override fun success(t: CoinWrapper<CoinRecord>) {
+                                override fun success(t: Wrapper<CoinRecord>) {
                                         view?.showCoinList(t)
                                 }
 

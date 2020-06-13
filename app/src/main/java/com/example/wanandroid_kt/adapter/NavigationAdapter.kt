@@ -5,11 +5,10 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.donkingliang.labels.LabelsView
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.entity.NaviEntity
-import com.example.wanandroid_kt.entity.SystemEntity
 import com.example.wanandroid_kt.view.OnSystemClickListener
 
 
-class NavigationAdapter : BaseQuickAdapter<NaviEntity, BaseViewHolder>(R.layout.item_system){
+class NavigationAdapter : BaseQuickAdapter<NaviEntity, BaseViewHolder>(R.layout.item_systemlist){
 
     private var systemClickListener: OnSystemClickListener? = null
 

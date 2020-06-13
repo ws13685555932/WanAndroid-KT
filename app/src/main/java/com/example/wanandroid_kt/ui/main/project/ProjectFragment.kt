@@ -2,7 +2,6 @@ package com.example.wanandroid_kt.ui.main.project
 
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.base.AppLazyFragment
-import com.example.wanandroid_kt.ui.main.playground.PlaygroundContract
 
 class ProjectFragment : AppLazyFragment<ProjectContract.Presenter<ProjectContract.View>>(), ProjectContract.View{
     override fun lazyInit() {

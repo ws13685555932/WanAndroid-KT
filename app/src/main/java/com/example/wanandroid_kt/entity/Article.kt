@@ -1,6 +1,9 @@
 package com.example.wanandroid_kt.entity
 
 import android.os.Parcelable
+import android.provider.SyncStateContract
+import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.example.wanandroid_kt.const.Constants
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -37,4 +40,7 @@ data class Article(
     var visible: Int = 0,
     var zan: Int = 0,
     var top: Boolean = false
-) : Parcelable
+) : Parcelable, MultiItemEntity{
+    override val itemType: Int
+        get() = if(envelopePic.isNullOrEmpty()) Constants.ITEM_ARTICLE else Constants.ITEM_ARTICLE_PIC
+}

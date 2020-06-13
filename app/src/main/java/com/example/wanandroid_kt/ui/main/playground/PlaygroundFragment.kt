@@ -7,20 +7,19 @@ import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.adapter.FragmentListAdapter
 import com.example.wanandroid_kt.adapter.TabAdapter
 import com.example.wanandroid_kt.base.AppLazyFragment
+import com.example.wanandroid_kt.base.IBasePresenter
 import com.example.wanandroid_kt.ext.str
 import com.example.wanandroid_kt.ext.toast
 import com.example.wanandroid_kt.ui.main.discovery.DiscoveryContract
 import com.example.wanandroid_kt.ui.main.playground.navigation.NavigationFragment
 import com.example.wanandroid_kt.ui.main.playground.systemlist.SystemListFragment
-import com.example.wanandroid_kt.view.OnTabClickListener
 import kotlinx.android.synthetic.main.fragment_playground.*
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import java.time.Clock.system
 
-class PlaygroundFragment : AppLazyFragment<PlaygroundContract.Presenter<PlaygroundContract.View>>(),
-    PlaygroundContract.View,
-    OnTabClickListener {
+class PlaygroundFragment : AppLazyFragment<IBasePresenter<*>>(),
+    TabAdapter.OnTabClickListener {
 
     private var tabList = mutableListOf<String>()
 
@@ -39,6 +38,7 @@ class PlaygroundFragment : AppLazyFragment<PlaygroundContract.Presenter<Playgrou
         val adapter = FragmentListAdapter(fragmentList, childFragmentManager)
         vpContent.offscreenPageLimit = 0
         vpContent.adapter = adapter
+
         val commonNavigator = CommonNavigator(context)
         val tabAdapter = TabAdapter(tabList)
         tabAdapter.setOnTabClickListener(this)
@@ -47,9 +47,6 @@ class PlaygroundFragment : AppLazyFragment<PlaygroundContract.Presenter<Playgrou
         ViewPagerHelper.bind(miTab, vpContent)
     }
 
-    override fun createPresenter(): PlaygroundContract.Presenter<PlaygroundContract.View>? {
-        return null
-    }
 
     override fun layoutId(): Int {
         return R.layout.fragment_playground
@@ -61,6 +58,10 @@ class PlaygroundFragment : AppLazyFragment<PlaygroundContract.Presenter<Playgrou
 
     override fun onTabClick(view: View, index: Int) {
         vpContent.currentItem = index
+    }
+
+    override fun createPresenter(): IBasePresenter<*>? {
+        return null
     }
 
 }

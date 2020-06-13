@@ -6,6 +6,6 @@ import com.example.wanandroid_kt.MyApplication
 
 object ColorUtil {
     fun getColor(@ColorRes colorId: Int): Int {
-        return ContextCompat.getColor(MyApplication.context, colorId)
+        return ContextCompat.getColor(MyApplication.mContext, colorId)
     }
 }

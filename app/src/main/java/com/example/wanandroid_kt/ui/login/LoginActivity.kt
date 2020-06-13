@@ -4,7 +4,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.base.AppBaseActivity
-import com.example.wanandroid_kt.const.SaveConstants
+import com.example.wanandroid_kt.const.Constants
 import com.example.wanandroid_kt.entity.UserEntity
 import com.example.wanandroid_kt.ext.toast
 import com.example.wanandroid_kt.ui.register.RegisterActivity
@@ -76,7 +76,7 @@ class LoginActivity : AppBaseActivity<LoginContract.Presenter<LoginContract.View
 
     override fun loginSuccess(t: UserEntity) {
         hideLoadingDialog()
-        SharedPrefUtil.saveValue(SaveConstants.IS_LOGIN, true)
+        SharedPrefUtil.saveValue(Constants.IS_LOGIN, true)
         R.string.login_success.toast()
         finish()
     }

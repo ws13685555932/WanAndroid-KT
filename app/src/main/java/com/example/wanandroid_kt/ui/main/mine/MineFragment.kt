@@ -3,14 +3,13 @@ package com.example.wanandroid_kt.ui.main.mine
 import android.os.Bundle
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.base.AppLazyFragment
-import com.example.wanandroid_kt.const.SaveConstants
+import com.example.wanandroid_kt.const.Constants
 import com.example.wanandroid_kt.entity.CoinEntity
 import com.example.wanandroid_kt.entity.LoginEvent
 import com.example.wanandroid_kt.entity.UserEntity
 import com.example.wanandroid_kt.ext.str
 import com.example.wanandroid_kt.ui.coin.CoinActivity
 import com.example.wanandroid_kt.ui.login.LoginActivity
-import com.example.wanandroid_kt.utils.AppUtil
 import com.example.wanandroid_kt.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_mine.*
 import org.greenrobot.eventbus.EventBus
@@ -37,7 +36,7 @@ class MineFragment : AppLazyFragment<MineContract.Presenter<MineContract.View>>(
 
     private fun initData() {
         // 从本地获取名字和id
-        SharedPrefUtil.getObject(SaveConstants.USER_INFO)?.let {
+        SharedPrefUtil.getObject(Constants.USER_INFO)?.let {
             userEntity = it as UserEntity
         }
         if (userEntity != null){

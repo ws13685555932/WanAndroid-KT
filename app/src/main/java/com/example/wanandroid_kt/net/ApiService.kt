@@ -47,17 +47,17 @@ interface ApiService {
     @GET("/lg/coin/userinfo/json")
     fun getIntegral():Observable<BaseResponse<CoinEntity>>
 
-//    /**
-//     * 收藏
-//     */
-//    @POST("/lg/collect/{id}/json")
-//    fun collect(@Path("id")id:Int):Observable<BaseResponse<Any>>
+    /**
+     * 收藏
+     */
+    @POST("/lg/collect/{id}/json")
+    fun collect(@Path("id")id:Int):Observable<BaseResponse<Any>>
 //
-//    /**
-//     * 取消收藏
-//     */
-//    @POST("/lg/uncollect_originId/{id}/json")
-//    fun unCollect(@Path("id") id: Int): Observable<BaseResponse<Any>>
+    /**
+     * 取消收藏
+     */
+    @POST("/lg/uncollect_originId/{id}/json")
+    fun unCollect(@Path("id") id: Int): Observable<BaseResponse<Any>>
 //
 //    /**
 //     * 获取项目tab
@@ -100,12 +100,12 @@ interface ApiService {
     fun getSystemList() : Observable<BaseResponse<MutableList<SystemEntity>>>
 //
 //
-//    /**
-//     * 获取项目tab
-//     */
-//    @GET("/article/list/{pageNum}/json")
-//    fun getSystemArticle(@Path("pageNum")pageNum:Int,@Query("cid")cid:Int)
-//            : Observable<BaseResponse<ArticleEntity>>
+    /**
+     * 获取项目tab
+     */
+    @GET("/article/list/{pageNum}/json")
+    fun getSystemArticle(@Path("pageNum")pageNum:Int,@Query("cid")cid:Int)
+            : Observable<BaseResponse<Wrapper<Article>>>
 //
     /**
      * 导航
@@ -123,7 +123,7 @@ interface ApiService {
      * 积分记录
      */
     @GET("/lg/coin/list/{pageNum}/json")
-    fun getIntegralRecord(@Path("pageNum")pageNum: Int) : Observable<BaseResponse<CoinWrapper<CoinRecord>>>
+    fun getIntegralRecord(@Path("pageNum")pageNum: Int) : Observable<BaseResponse<Wrapper<CoinRecord>>>
 //
 //    /**
 //     * 我分享的文章

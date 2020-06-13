@@ -5,7 +5,9 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorT
 
 class ZsSimplePagerTitleView(context: Context?) :
     ColorTransitionPagerTitleView(context) {
+
     private var selectListener: SelectListener? = null
+
     override fun onSelected(index: Int, totalCount: Int) {
         super.onSelected(index, totalCount)
         if (selectListener != null) {

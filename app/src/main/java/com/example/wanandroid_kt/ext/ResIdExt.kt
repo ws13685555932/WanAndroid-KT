@@ -5,8 +5,8 @@ import com.example.wanandroid_kt.MyApplication
 import com.example.wanandroid_kt.utils.ColorUtil
 
 fun Int.toast(duration: Int = Toast.LENGTH_SHORT){
-    val showStr = MyApplication.context.resources.getString(this)
-    Toast.makeText(MyApplication.context, showStr, duration).show()
+    val showStr = MyApplication.mContext.resources.getString(this)
+    Toast.makeText(MyApplication.mContext, showStr, duration).show()
 }
 
 
@@ -15,5 +15,5 @@ fun Int.getColor() : Int{
 }
 
 fun Int.str() : String{
-    return MyApplication.context.resources.getString(this)
+    return MyApplication.mContext.resources.getString(this)
 }

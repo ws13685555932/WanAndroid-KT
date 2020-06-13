@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.adapter.CoinAdapter
 import com.example.wanandroid_kt.base.AppBaseActivity
+import com.example.wanandroid_kt.entity.Bean
 import com.example.wanandroid_kt.entity.CoinRecord
-import com.example.wanandroid_kt.entity.CoinWrapper
-import com.example.wanandroid_kt.view.ScoreView
+import com.example.wanandroid_kt.entity.Wrapper
+import com.example.wanandroid_kt.ext.toast
 import kotlinx.android.synthetic.main.activity_coin.*
 import kotlinx.android.synthetic.main.header_my_coin.*
 
@@ -29,6 +30,9 @@ class CoinActivity : AppBaseActivity<CoinContract.Presenter>(), CoinContract.Vie
         )
         mAdapter.setHeaderView(headView)
         rvCoinList.adapter = mAdapter
+
+        val bean = Bean("s").proX()
+        bean.toast()
 
         presenter?.getIntegralRecord(0)
         presenter?.getIntegral()
@@ -56,7 +60,7 @@ class CoinActivity : AppBaseActivity<CoinContract.Presenter>(), CoinContract.Vie
         return CoinPresenter(this)
     }
 
-    override fun showCoinList(t: CoinWrapper<CoinRecord>) {
+    override fun showCoinList(t: Wrapper<CoinRecord>) {
         mAdapter.setList(t.datas)
 
     }

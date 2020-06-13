@@ -7,7 +7,7 @@ import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.entity.SystemEntity
 import com.example.wanandroid_kt.view.OnSystemClickListener
 
-class SystemAdapter : BaseQuickAdapter<SystemEntity, BaseViewHolder>(R.layout.item_system){
+class SystemAdapter : BaseQuickAdapter<SystemEntity, BaseViewHolder>(R.layout.item_systemlist){
 
     private var systemClickListener: OnSystemClickListener? = null
 

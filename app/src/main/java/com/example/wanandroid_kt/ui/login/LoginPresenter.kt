@@ -1,7 +1,7 @@
 package com.example.wanandroid_kt.ui.login
 
 import com.example.wanandroid_kt.base.BasePresenter
-import com.example.wanandroid_kt.const.SaveConstants
+import com.example.wanandroid_kt.const.Constants
 import com.example.wanandroid_kt.entity.LoginEvent
 import com.example.wanandroid_kt.entity.UserEntity
 import com.example.wanandroid_kt.net.ApiCallBack
@@ -24,7 +24,7 @@ class LoginPresenter(view:LoginContract.View) :BasePresenter<LoginContract.View>
                                 }
 
                                 override fun success(t: UserEntity) {
-                                        SharedPrefUtil.saveObject(SaveConstants.USER_INFO, t)
+                                        SharedPrefUtil.saveObject(Constants.USER_INFO, t)
                                         EventBus.getDefault().post(LoginEvent())
                                         view?.loginSuccess(t)
                                 }

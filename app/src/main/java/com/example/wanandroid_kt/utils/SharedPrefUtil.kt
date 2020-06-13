@@ -4,16 +4,14 @@ import android.content.Context
 import android.text.TextUtils
 import android.util.Base64
 import com.example.wanandroid_kt.MyApplication
-import com.example.wanandroid_kt.ext.log
 import java.io.*
-import java.lang.IllegalArgumentException
 
 object SharedPrefUtil {
     private const val TAG : String = "sharedPreference"
     private const val DATA_FILE = "data"
 
     fun saveValue(key : String, value : Any){
-        val editor = MyApplication.context.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE).edit()
+        val editor = MyApplication.mContext.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE).edit()
         when (value){
             is Int -> editor.putInt(key, value)
             is String -> editor.putString(key, value)
@@ -26,7 +24,7 @@ object SharedPrefUtil {
     }
 
     fun getValue(key: String, default : Any?) : Any?{
-        val shared = MyApplication.context.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
+        val shared = MyApplication.mContext.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
         return when(default){
             is Int -> shared.getInt(key, default)
             is String -> shared.getString(key ,default)
@@ -38,7 +36,7 @@ object SharedPrefUtil {
     }
 
     fun removeKey(key: String): Boolean {
-        val sp = MyApplication.context.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
+        val sp = MyApplication.mContext.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
         return sp.edit().remove(key).commit()
     }
 
@@ -52,7 +50,7 @@ object SharedPrefUtil {
         var baos: ByteArrayOutputStream? = null
         var oos: ObjectOutputStream? = null
         try {
-            val sp = MyApplication.context.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
+            val sp = MyApplication.mContext.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
             baos = ByteArrayOutputStream()
             oos = ObjectOutputStream(baos)
             oos.writeObject(value)
@@ -69,7 +67,7 @@ object SharedPrefUtil {
         var `object`: Any? = null
         var bais: ByteArrayInputStream? = null
         var ois: ObjectInputStream? = null
-        val sp = MyApplication.context.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
+        val sp = MyApplication.mContext.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
         val temp = sp.getString(key, "")
         if (!TextUtils.isEmpty(temp)) {
             try {
