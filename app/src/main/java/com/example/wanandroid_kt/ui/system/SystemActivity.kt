@@ -16,6 +16,7 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.activity_system.*
+import kotlinx.android.synthetic.main.include_toolbar.*
 import kotlinx.android.synthetic.main.item_project.*
 
 
@@ -35,6 +36,12 @@ class SystemActivity : AppBaseActivity<SystemContract.Presenter>(),
 
     override fun initView() {
         sysLoading.setReloadListener(this)
+
+        ivBack.setOnClickListener {
+            finish()
+        }
+
+
 
         smartRefresh.setOnRefreshListener(this)
         rvSystem.layoutManager = LinearLayoutManager(this)
@@ -58,6 +65,7 @@ class SystemActivity : AppBaseActivity<SystemContract.Presenter>(),
         val bundle = intent.extras
         cid = bundle?.getInt(Constants.SYSTEM_ID)
         title = bundle?.getString(Constants.SYSTEM_TITLE)
+        tvTitleTool.text = title
         loadData()
     }
 
@@ -90,6 +98,15 @@ class SystemActivity : AppBaseActivity<SystemContract.Presenter>(),
     }
 
     private fun dismissRefresh(){
+        sysLoading.dismiss()
+        if (smartRefresh.state.isOpening){
+            "is openning".log()
+            smartRefresh.finishLoadMore(false)
+            smartRefresh.finishRefresh(false)
+        }
+    }
+
+    private fun dismissLoadMore(){
         sysLoading.dismiss()
         if (smartRefresh.state.isOpening){
             "is openning".log()
