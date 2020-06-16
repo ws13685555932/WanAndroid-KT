@@ -11,6 +11,7 @@ import com.example.wanandroid_kt.ext.str
 import com.example.wanandroid_kt.ui.coin.CoinActivity
 import com.example.wanandroid_kt.ui.login.LoginActivity
 import com.example.wanandroid_kt.utils.SharedPrefUtil
+import com.zs.wanandroid.ui.collect.CollectActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -74,6 +75,10 @@ class MineFragment : AppLazyFragment<MineContract.Presenter<MineContract.View>>(
 
         llCoin.setOnClickListener {
             goto(CoinActivity::class.java, false)
+        }
+
+        rlCollect.setOnClickListener {
+            goto(CollectActivity::class.java, true)
         }
     }
 

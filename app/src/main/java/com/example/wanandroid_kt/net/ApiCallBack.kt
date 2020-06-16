@@ -1,5 +1,6 @@
 package com.example.wanandroid_kt.net
 
+import com.example.wanandroid_kt.ext.log
 import com.google.gson.JsonParseException
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -17,8 +18,15 @@ abstract class ApiCallBack <T> : Observer<BaseResponse<T>> {
     }
 
     override fun onNext(t: BaseResponse<T>) {
+        t.errorCode.toString().log()
         when (t.errorCode) {
-            0 -> t.data?.let { success(it) }
+            0 -> {
+                if (t.data==null){
+                    val tClass = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<T>
+                    t.data = tClass.newInstance()
+                }
+                t.data?.let { success(it) }
+            }
             -1001 -> loginFailed(t.errorMsg)
             -1 -> onError(ApiException(t.errorMsg))
         }

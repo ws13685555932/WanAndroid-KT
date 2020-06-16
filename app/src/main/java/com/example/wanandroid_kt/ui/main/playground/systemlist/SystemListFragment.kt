@@ -7,17 +7,15 @@ import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.adapter.SystemAdapter
 import com.example.wanandroid_kt.base.AppLazyFragment
 import com.example.wanandroid_kt.const.Constants
-import com.example.wanandroid_kt.entity.SystemEntity
-import com.example.wanandroid_kt.ext.toast
+import com.example.wanandroid_kt.entity.TabEntity
 import com.example.wanandroid_kt.ui.system.SystemActivity
 import com.example.wanandroid_kt.view.OnSystemClickListener
-import kotlinx.android.synthetic.main.fragment_navigation.*
 import kotlinx.android.synthetic.main.fragment_systemlist.*
 
 class SystemListFragment :AppLazyFragment<SystemListContract.Presenter>(), SystemListContract.View,
     OnSystemClickListener {
 
-    private var systemList : MutableList<SystemEntity>? = null
+    private var systemList : MutableList<TabEntity>? = null
     private lateinit var systemAdapter : SystemAdapter
 
     override fun lazyInit() {
@@ -37,7 +35,7 @@ class SystemListFragment :AppLazyFragment<SystemListContract.Presenter>(), Syste
         return R.layout.fragment_systemlist
     }
 
-    override fun showList(t: MutableList<SystemEntity>) {
+    override fun showList(t: MutableList<TabEntity>) {
         loadingTip.dismiss()
         systemList = t
         systemAdapter.setList(systemList)

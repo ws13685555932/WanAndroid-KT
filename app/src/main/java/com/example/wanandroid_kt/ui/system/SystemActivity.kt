@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.item_project.*
 
 
 class SystemActivity : AppBaseActivity<SystemContract.Presenter>(),
-    SystemContract.View, LoadingTip.ReloadListener, OnRefreshListener {
+    SystemContract.View, LoadingTip.ReloadListener, OnRefreshListener, OnLoadMoreListener {
 
     private var cid: Int? = null
     private var title: String? = null
@@ -31,7 +31,6 @@ class SystemActivity : AppBaseActivity<SystemContract.Presenter>(),
     private lateinit var articleAdapter: ArticleAdapter
     private var articleList: MutableList<Article> = mutableListOf<Article>()
 
-    private var collectClickListener: ArticleAdapter.OnCollectClickListener? = null
 
 
     override fun initView() {
@@ -44,18 +43,31 @@ class SystemActivity : AppBaseActivity<SystemContract.Presenter>(),
 
 
         smartRefresh.setOnRefreshListener(this)
+        smartRefresh.setOnLoadMoreListener(this)
         rvSystem.layoutManager = LinearLayoutManager(this)
         articleAdapter = ArticleAdapter()
-//        articleAdapter.setOnItemChildClickListener(object : OnItemChildClickListener {
-//            override fun onItemChildClick(
-//                adapter: BaseQuickAdapter<*, *>,
-//                view: View,
-//                position: Int
-//            ) {
-//
-//            }
-//
-//        })
+        articleAdapter.addChildClickViewIds(R.id.ivCollect);
+        articleAdapter.setOnItemChildClickListener(object : OnItemChildClickListener {
+            override fun onItemChildClick(
+                adapter: BaseQuickAdapter<*, *>,
+                view: View,
+                position: Int
+            ) {
+                if(view.id == R.id.ivCollect){
+                    val item : Article = adapter.getItem(position) as Article
+                    currentPosition = position
+                    if(item.collect){
+                        "uncollect".log()
+                        presenter?.uncollect(articleList[position].id)
+                    }else{
+                        "collect".log()
+                        presenter?.collect(articleList[position].id)
+                    }
+
+                }
+            }
+
+        })
         rvSystem.adapter = articleAdapter
     }
 
@@ -75,11 +87,6 @@ class SystemActivity : AppBaseActivity<SystemContract.Presenter>(),
         cid?.let { presenter?.getArticleListOfTag(pageNum, it) }
     }
 
-    private fun loadMore() {
-        pageNum += 1
-        cid?.let { presenter?.getArticleListOfTag(pageNum, it) }
-    }
-
     override fun layoutId(): Int {
         return R.layout.activity_system
     }
@@ -89,7 +96,7 @@ class SystemActivity : AppBaseActivity<SystemContract.Presenter>(),
     }
 
     override fun showList(t: Wrapper<Article>) {
-        dismissRefresh()
+        dismissLoadMore()
         "dismiss".log()
         if (t.datas.isNotEmpty()) {
             articleList.addAll(t.datas)
@@ -116,19 +123,28 @@ class SystemActivity : AppBaseActivity<SystemContract.Presenter>(),
     }
 
     override fun collectSucess() {
+        "collect success".log()
+        articleList[currentPosition].collect = true
+        articleAdapter.notifyItemChanged(currentPosition)
 
     }
 
     override fun unCollecSuccess() {
+        articleList[currentPosition].collect = false
+        articleAdapter.setData(currentPosition, articleList[currentPosition])
     }
 
     override fun reload() {
+        sysLoading.loading()
         loadData()
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-        "refresh".log()
-        dismissRefresh()
-        "dismiss".log()
+//        loadData()
+    }
+
+    override fun onLoadMore(refreshLayout: RefreshLayout) {
+        pageNum++
+        cid?.let { presenter?.getArticleListOfTag(pageNum, it) }
     }
 }

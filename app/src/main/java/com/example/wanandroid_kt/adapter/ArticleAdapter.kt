@@ -9,6 +9,7 @@ import com.example.wanandroid_kt.const.Constants
 import com.example.wanandroid_kt.entity.Article
 import com.example.wanandroid_kt.ext.getColor
 import com.example.wanandroid_kt.utils.ImageLoad
+import kotlinx.android.synthetic.main.item_project.*
 
 /**
  * 文章适配器
@@ -22,12 +23,6 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<Article, BaseViewHolder>() {
     init {
         addItemType(Constants.ITEM_ARTICLE, R.layout.item_home_article)
         addItemType(Constants.ITEM_ARTICLE_PIC,R.layout.item_project)
-    }
-
-    private var collectClickListener:OnCollectClickListener? = null
-
-    fun setCollectClickListener(collectClickListener:OnCollectClickListener){
-        this.collectClickListener = collectClickListener
     }
 
     override fun convert(holder: BaseViewHolder, item: Article) {
@@ -45,17 +40,11 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<Article, BaseViewHolder>() {
                     holder.setText(R.id.tvDate,niceDate)
                     holder.setText(R.id.tvTitle, Html.fromHtml(title))
                     holder.setText(R.id.tvChapterName,superChapterName)
-//                    holder.getView<ImageView>(R.id.ivCollect)
-//                        .apply {
-//                            setOnClickListener(OnLimitClickHelper(OnLimitClickListener {
-//                                collectClickListener?.onCollectClick(holder, holder.adapterPosition)
-//                            }))
-//                            if (item.collect) {
-//                                setImageResource(R.mipmap.article_collect)
-//                            }else{
-//                                setImageResource(R.mipmap.article_un_collect)
-//                            }
-//                        }
+                    if(item.collect){
+                        holder.setImageResource(R.id.ivCollect, R.mipmap.article_collect)
+                    }else{
+                        holder.setImageResource(R.id.ivCollect, R.mipmap.article_un_collect)
+                    }
                 }
             }
 
@@ -66,23 +55,14 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<Article, BaseViewHolder>() {
                     holder.setText(R.id.tvTitle,title)
                     holder.setText(R.id.tvDes,desc)
                     holder.setText(R.id.tvNameData,"$niceDate | $author")
-//                    holder.getView<ImageView>(R.id.ivCollect).apply {
-//                        setOnClickListener(OnLimitClickHelper(OnLimitClickListener {
-//                            collectClickListener?.onCollectClick(holder, holder.adapterPosition)
-//                        }))
-//                        if (item.collect) {
-//                            setImageResource(R.mipmap.article_collect)
-//                        }else{
-//                            setImageResource(R.mipmap.article_un_collect)
-//                        }
-//                    }
+                    if(item.collect){
+                        holder.setImageResource(R.id.ivCollect, R.mipmap.article_collect)
+                    }else{
+                        holder.setImageResource(R.id.ivCollect, R.mipmap.article_un_collect)
+                    }
                 }
             }
 
         }
-    }
-
-    interface OnCollectClickListener{
-        fun onCollectClick(helper: Any?, adapterPosition: Any)
     }
 }

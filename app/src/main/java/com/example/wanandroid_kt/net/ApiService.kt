@@ -37,9 +37,9 @@ interface ApiService {
 //    /**
 //     * 获取收藏文章数据
 //     */
-//    @GET("/lg/collect/list/{page}/json")
-//    fun getCollectData(@Path("page") pageNo: Int):
-//            Observable<BaseResponse<CollectEntity>>
+    @GET("/lg/collect/list/{page}/json")
+    fun getCollectData(@Path("page") pageNo: Int):
+            Observable<BaseResponse<Wrapper<Article>>>
 //
     /**
      * 获取个人积分
@@ -59,31 +59,31 @@ interface ApiService {
     @POST("/lg/uncollect_originId/{id}/json")
     fun unCollect(@Path("id") id: Int): Observable<BaseResponse<Any>>
 //
-//    /**
-//     * 获取项目tab
-//     */
-//    @GET("/project/tree/json")
-//    fun getProjectTabList(): Observable<BaseResponse<MutableList<TabEntity>>>
+    /**
+     * 获取项目tab
+     */
+    @GET("/project/tree/json")
+    fun getProjectTabList(): Observable<BaseResponse<MutableList<TabEntity>>>
 //
-//    /**
-//     * 获取项目tab
-//     */
-//    @GET("/wxarticle/chapters/json  ")
-//    fun getAccountTabList(): Observable<BaseResponse<MutableList<TabEntity>>>
+    /**
+     * 获取项目tab
+     */
+    @GET("/wxarticle/chapters/json  ")
+    fun getAccountTabList(): Observable<BaseResponse<MutableList<TabEntity>>>
 //
-//    /**
-//     * 获取项目列表
-//     */
-//    @GET("/project/list/{pageNum}/json")
-//    fun getProjectList(@Path("pageNum")pageNum:Int,@Query("cid")cid:Int)
-//            : Observable<BaseResponse<ArticleEntity>>
+    /**
+     * 获取项目列表
+     */
+    @GET("/project/list/{pageNum}/json")
+    fun getProjectList(@Path("pageNum")pageNum:Int,@Query("cid")cid:Int)
+            : Observable<BaseResponse<Wrapper<Article>>>
 //
-//    /**
-//     * 获取公众号列表
-//     */
-//    @GET("/wxarticle/list/{id}/{pageNum}/json")
-//    fun getAccountList(@Path("id")cid:Int,@Path("pageNum")pageNum:Int)
-//            : Observable<BaseResponse<ArticleEntity>>
+    /**
+     * 获取公众号列表
+     */
+    @GET("/wxarticle/list/{id}/{pageNum}/json")
+    fun getAccountList(@Path("id")cid:Int,@Path("pageNum")pageNum:Int)
+            : Observable<BaseResponse<Wrapper<Article>>>
 //
 //
 //    /**
@@ -97,7 +97,7 @@ interface ApiService {
      * 体系
      */
     @GET("/tree/json")
-    fun getSystemList() : Observable<BaseResponse<MutableList<SystemEntity>>>
+    fun getSystemList() : Observable<BaseResponse<MutableList<TabEntity>>>
 //
 //
     /**
@@ -125,17 +125,17 @@ interface ApiService {
     @GET("/lg/coin/list/{pageNum}/json")
     fun getIntegralRecord(@Path("pageNum")pageNum: Int) : Observable<BaseResponse<Wrapper<CoinRecord>>>
 //
-//    /**
-//     * 我分享的文章
-//     */
-//    @GET("/user/lg/private_articles/{pageNum}/json")
-//    fun getMyArticle(@Path("pageNum")pageNum: Int) : Observable<BaseResponse<MyArticleEntity>>
+    /**
+     * 我分享的文章
+     */
+    @GET("/user/lg/private_articles/{pageNum}/json")
+    fun getMyArticle(@Path("pageNum")pageNum: Int) : Observable<BaseResponse<MyArticle>>
 //
-//    /**
-//     * 我分享的文章
-//     */
-//    @POST("/lg/user_article/delete/{id}/json")
-//    fun deleteMyArticle(@Path("id")id: Int) : Observable<BaseResponse<Any>>
+    /**
+     * 我分享的文章
+     */
+    @POST("/lg/user_article/delete/{id}/json")
+    fun deleteMyArticle(@Path("id")id: Int) : Observable<BaseResponse<Any>>
 //
 //    /**
 //     * 分享文章

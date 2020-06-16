@@ -4,10 +4,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.donkingliang.labels.LabelsView
 import com.example.wanandroid_kt.R
-import com.example.wanandroid_kt.entity.SystemEntity
+import com.example.wanandroid_kt.entity.TabEntity
 import com.example.wanandroid_kt.view.OnSystemClickListener
 
-class SystemAdapter : BaseQuickAdapter<SystemEntity, BaseViewHolder>(R.layout.item_systemlist){
+class SystemAdapter : BaseQuickAdapter<TabEntity, BaseViewHolder>(R.layout.item_systemlist){
 
     private var systemClickListener: OnSystemClickListener? = null
 
@@ -15,7 +15,7 @@ class SystemAdapter : BaseQuickAdapter<SystemEntity, BaseViewHolder>(R.layout.it
         this.systemClickListener = systemClickListener
     }
 
-    override fun convert(holder: BaseViewHolder, item: SystemEntity) {
+    override fun convert(holder: BaseViewHolder, item: TabEntity) {
         item.let {
             holder.setText(R.id.tvTitle,item.name)
             holder.getView<LabelsView>(R.id.labelsView).apply {

@@ -10,13 +10,12 @@ import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.base.AppBaseActivity
 import com.example.wanandroid_kt.base.IBasePresenter
 import com.example.wanandroid_kt.base.IBaseView
+import com.example.wanandroid_kt.const.Constants
 import com.example.wanandroid_kt.net.RetrofitManager
-import com.example.wanandroid_kt.ui.main.discovery.DiscoveryFragment
 import com.example.wanandroid_kt.ui.main.home.HomeFragment
 import com.example.wanandroid_kt.ui.main.mine.MineFragment
 import com.example.wanandroid_kt.ui.main.playground.PlaygroundFragment
-import com.example.wanandroid_kt.ui.main.project.ProjectFragment
-import com.example.wanandroid_kt.ui.main.project.ProjectPresenter
+import com.zs.wanandroid.ui.main.tab.TabFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppBaseActivity<IBasePresenter<*>>() {
@@ -32,9 +31,19 @@ class MainActivity : AppBaseActivity<IBasePresenter<*>>() {
 
     private fun initFragment() {
         fragments.add(HomeFragment())
-        fragments.add(ProjectFragment())
+        val project = TabFragment()
+        val proBundle = Bundle()
+        proBundle.putInt("type", Constants.PROJECT_TYPE)
+        project.arguments = proBundle
+        fragments.add(project)
+        //体系
         fragments.add(PlaygroundFragment())
-        fragments.add(DiscoveryFragment())
+        //公众号
+        val account = TabFragment()
+        val accountBundle = Bundle()
+        accountBundle.putInt("type", Constants.ACCOUNT_TYPE)
+        account.arguments = accountBundle
+        fragments.add(account)
         fragments.add(MineFragment())
         switchTo(lastIndex)
     }

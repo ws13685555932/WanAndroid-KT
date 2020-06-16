@@ -10,7 +10,6 @@ import com.example.wanandroid_kt.base.AppLazyFragment
 import com.example.wanandroid_kt.base.IBasePresenter
 import com.example.wanandroid_kt.ext.str
 import com.example.wanandroid_kt.ext.toast
-import com.example.wanandroid_kt.ui.main.discovery.DiscoveryContract
 import com.example.wanandroid_kt.ui.main.playground.navigation.NavigationFragment
 import com.example.wanandroid_kt.ui.main.playground.systemlist.SystemListFragment
 import kotlinx.android.synthetic.main.fragment_playground.*

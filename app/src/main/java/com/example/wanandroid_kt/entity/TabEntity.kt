@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
  * Created by xiaojianjun on 2019-11-12.
  */
 @Parcelize
-data class SystemEntity(
+data class TabEntity(
     val courseId: Int,
     val id: Int,
     val name: String,
@@ -15,5 +15,5 @@ data class SystemEntity(
     val parentChapterId: Int,
     val userControlSetTop: Boolean,
     val visible: Int,
-    val children: ArrayList<SystemEntity>
+    val children: ArrayList<TabEntity>
 ) : Parcelable

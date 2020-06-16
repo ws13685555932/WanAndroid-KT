@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:text="Project"
-        android:textSize="18sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="104dp" />
+<LinearLayout
+    android:id="@+id/llTop"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@color/white"
+    android:backgroundTint="@color/theme"
+    app:layout_constraintTop_toTopOf="parent"
+    android:gravity="center_horizontal">
+
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/miTab"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"/>
+</LinearLayout>
+
+<androidx.viewpager.widget.ViewPager
+    android:id="@+id/vpContent"
+    app:layout_constraintTop_toBottomOf="@id/llTop"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="0dp" />
+
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="@drawable/gradient"
+    app:layout_constraintTop_toBottomOf="@id/llTop" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
