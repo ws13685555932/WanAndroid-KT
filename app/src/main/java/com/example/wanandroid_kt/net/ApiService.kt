@@ -8,20 +8,20 @@ interface ApiService {
 //    /**
 //     * 获取首页文章数据
 //     */
-//    @GET("/article/list/{page}/json")
-//    fun getHomeList(@Path("page") pageNo: Int): Observable<BaseResponse<ArticleEntity>>
+    @GET("/article/list/{page}/json")
+    fun getHomeList(@Path("page") pageNo: Int): Observable<BaseResponse<Wrapper<Article>>>
 //
 //    /**
 //     * 获取首页置顶文章数据
 //     */
-//    @GET("/article/top/json")
-//    fun getTopList(): Observable<BaseResponse<MutableList<ArticleEntity.DatasBean>>>
+    @GET("/article/top/json")
+    fun getTopList(): Observable<BaseResponse<MutableList<Article>>>
 //
 //    /**
 //     * banner
 //     */
-//    @GET("/banner/json")
-//    fun getBanner(): Observable<BaseResponse<MutableList<BannerEntity>>>
+    @GET("/banner/json")
+    fun getBanner(): Observable<BaseResponse<MutableList<Banner>>>
 
     /**
      * 登录

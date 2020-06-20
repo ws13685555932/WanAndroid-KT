@@ -3,6 +3,7 @@ package com.example.wanandroid_kt.adapter
 import android.text.Html
 import android.text.TextUtils
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
+import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.const.Constants
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.item_project.*
  */
 
 
-class ArticleAdapter : BaseMultiItemQuickAdapter<Article, BaseViewHolder>() {
+class ArticleAdapter : BaseMultiItemQuickAdapter<Article, BaseViewHolder>() , LoadMoreModule{
 
     init {
         addItemType(Constants.ITEM_ARTICLE, R.layout.item_home_article)
