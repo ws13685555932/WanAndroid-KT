@@ -24,4 +24,13 @@ object Constants{
      * 项目/公众号公用一套逻辑。公众号标记
      */
     const val ACCOUNT_TYPE = 20
+
+    /**
+     * webView url
+     */
+    const val WEB_URL = "webUrl"
+    /**
+     * webView 标题
+     */
+    const val WEB_TITLE = "webTitle"
 }

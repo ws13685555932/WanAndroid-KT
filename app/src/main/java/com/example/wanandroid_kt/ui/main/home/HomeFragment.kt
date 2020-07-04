@@ -1,6 +1,7 @@
 package com.example.wanandroid_kt.ui.main.home
 
 import android.graphics.Color
+import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,9 +12,12 @@ import com.example.wanandroid_kt.MyApplication
 import com.example.wanandroid_kt.R
 import com.example.wanandroid_kt.adapter.ArticleAdapter
 import com.example.wanandroid_kt.base.AppLazyFragment
+import com.example.wanandroid_kt.const.Constants
 import com.example.wanandroid_kt.entity.Article
 import com.example.wanandroid_kt.entity.Banner
 import com.example.wanandroid_kt.ext.log
+import com.example.wanandroid_kt.ext.toast
+import com.example.wanandroid_kt.ui.web.WebActivity
 import com.example.wanandroid_kt.utils.AppUtil
 import com.to.aboomy.pager2banner.IndicatorView
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -44,11 +48,18 @@ class HomeFragment : AppLazyFragment<HomeContract.Presenter<HomeContract.View>>(
                 item.imagePath.log()
             }
         }
+
         mBannerList = mutableListOf()
         mAdapter.setList(mBannerList)
         banner.setIndicator(indicator).adapter = mAdapter
 
         mArticleAdapter = ArticleAdapter()
+        mArticleAdapter.setOnItemClickListener { adapter, view, position ->
+            goto(Bundle().apply {
+                putString(Constants.WEB_URL,mArticleList[position].link)
+                putString(Constants.WEB_TITLE,mArticleList[position].title)
+            }, WebActivity::class.java,false)
+        }
         mArticleAdapter.setList(mArticleList)
         mArticleAdapter.loadMoreModule.setOnLoadMoreListener {
             loadMore()

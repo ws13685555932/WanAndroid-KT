@@ -21,8 +21,9 @@ abstract class BaseActivity <P : IBasePresenter<*>> : AppCompatActivity(){
             lifecycle.addObserver(it)
         }
 
-        initView()
         initData()
+        initView()
+
     }
 
     protected fun goto(clazz: Class<*>){
