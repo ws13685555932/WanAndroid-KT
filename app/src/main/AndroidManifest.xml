@@ -12,17 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.web.WebActivity"></activity>
-        <activity android:name=".ui.system.SystemActivity" />
-        <activity android:name=".ui.coin.CoinActivity" />
-        <activity android:name=".ui.register.RegisterActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.search.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.web.WebActivity" />
+        <activity android:name=".ui.system.SystemActivity" />
+        <activity android:name=".ui.coin.CoinActivity" />
+        <activity android:name=".ui.register.RegisterActivity" />
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.main.MainActivity">
+
         </activity>
         <activity android:name="com.zs.wanandroid.ui.collect.CollectActivity" />
     </application>

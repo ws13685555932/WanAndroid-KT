@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlToolbar"
+        android:background="@color/theme"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/tvCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:text="取消"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_toLeftOf="@id/tvCancel"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/bg_search">
+
+
+
+            <ImageView
+                android:id="@+id/ivSearch"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/home_search" />
+
+            <ImageView
+                android:id="@+id/ivClear"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/black_clear" />
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginRight="35dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:textSize="@dimen/text_2"
+                android:textColor="@color/text_2"
+                android:layout_toRightOf="@id/ivSearch"
+                android:layout_toLeftOf="@id/ivClear"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/padding"
+        android:layout_below="@id/rlToolbar"
+        android:paddingRight="@dimen/padding"
+        android:id="@+id/clRecord"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="9dp"
+            android:text="历史搜索"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvClear"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:text="清空"
+            android:textSize="15sp" />
+
+        <com.donkingliang.labels.LabelsView
+            android:id="@+id/labelsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvClear"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvClear"
+            app:labelBackground="@drawable/tag_ripple_bg"
+            app:labelTextColor="@color/text_2"
+            app:labelTextSize="@dimen/text_2"
+            app:labelTextPaddingBottom="3dp"
+            app:labelTextPaddingLeft="10dp"
+            app:labelTextPaddingRight="10dp"
+            app:labelTextPaddingTop="3dp"
+            app:lineMargin="16dp"
+            app:selectType="NONE"
+            app:wordMargin="10dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rlToolbar"
+        android:visibility="gone"
+        android:id="@+id/smartRefresh">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:id="@+id/rvSearch"/>
+
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+    <com.example.wanandroid_kt.view.LoadingTip
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/loadingTip"
+        android:visibility="gone"
+        android:layout_marginTop="90dp"/>
+</RelativeLayout>

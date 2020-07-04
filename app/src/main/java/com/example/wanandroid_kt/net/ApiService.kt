@@ -86,12 +86,12 @@ interface ApiService {
             : Observable<BaseResponse<Wrapper<Article>>>
 //
 //
-//    /**
-//     * 获取项目tab
-//     */
-//    @POST("/article/query/{pageNum}/json")
-//    fun search(@Path("pageNum")pageNum:Int,@Query("k")k:String)
-//            : Observable<BaseResponse<ArticleEntity>>
+    /**
+     * 获取项目tab
+     */
+    @POST("/article/query/{pageNum}/json")
+    fun search(@Path("pageNum")pageNum:Int,@Query("k")k:String)
+            : Observable<BaseResponse<Wrapper<Article>>>
 //
     /**
      * 体系

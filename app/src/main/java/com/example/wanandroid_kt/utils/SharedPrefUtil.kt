@@ -1,12 +1,10 @@
 package com.example.wanandroid_kt.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
 import android.util.Base64
 import com.example.wanandroid_kt.MyApplication
 import java.io.*
-import java.lang.StringBuilder
 
 object SharedPrefUtil {
     private const val TAG : String = "sharedPreference"
@@ -37,28 +35,26 @@ object SharedPrefUtil {
         }
     }
 
-    @SuppressLint("CommitPrefEdits")
-    fun saveStringList(key : String, list : MutableList<String>){
+    fun saveList(key: String, value: MutableList<String>){
         val editor = MyApplication.mContext.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE).edit()
-        val stringList = StringBuilder()
-        stringList.apply {
-            for(str in list){
-                append(str)
-                append(" ")
-            }
+
+        for (i in 0 until value.size){
+            editor.remove(key + i)
+            editor.putString(key + i, value.get(i))
         }
-        editor.putString(key, stringList.toString())
+        editor.putInt(key,value.size)
+
+        editor.apply()
     }
 
-    fun getStringList(key :String) : MutableList<String>{
+    fun getList(key: String): MutableList<String> {
         val shared = MyApplication.mContext.getSharedPreferences(DATA_FILE, Context.MODE_PRIVATE)
-        val stringList = shared.getString(key, "")
-        val strings = stringList.toString().split(" ")
-        val liststr : MutableList<String> = mutableListOf()
-        for (str in strings){
-            liststr.add(str)
+        val resList = mutableListOf<String>()
+        val size = shared.getInt(key, 0)
+        for (i in 0 until size){
+            shared.getString(key+i, "")?.let { resList.add(it) }
         }
-        return liststr
+        return resList
     }
 
 

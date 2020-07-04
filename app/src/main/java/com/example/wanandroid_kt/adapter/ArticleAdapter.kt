@@ -2,6 +2,7 @@ package com.example.wanandroid_kt.adapter
 
 import android.text.Html
 import android.text.TextUtils
+import android.widget.ImageView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
@@ -10,7 +11,8 @@ import com.example.wanandroid_kt.const.Constants
 import com.example.wanandroid_kt.entity.Article
 import com.example.wanandroid_kt.ext.getColor
 import com.example.wanandroid_kt.utils.ImageLoad
-import kotlinx.android.synthetic.main.item_project.*
+import com.jakewharton.rxbinding4.view.clicks
+import java.util.concurrent.TimeUnit
 
 /**
  * 文章适配器
@@ -25,6 +27,17 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<Article, BaseViewHolder>() , Lo
         addItemType(Constants.ITEM_ARTICLE, R.layout.item_home_article)
         addItemType(Constants.ITEM_ARTICLE_PIC,R.layout.item_project)
     }
+
+    interface OnCollectedListener{
+        fun onCollected(collected:Boolean, position : Int)
+    }
+
+    private var onCollectedListener : OnCollectedListener? = null
+
+    fun setOnCollectedListener(onCollectedListener: OnCollectedListener){
+        this.onCollectedListener = onCollectedListener
+    }
+
 
     override fun convert(holder: BaseViewHolder, item: Article) {
         when(holder.itemViewType){
@@ -46,6 +59,14 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<Article, BaseViewHolder>() , Lo
                     }else{
                         holder.setImageResource(R.id.ivCollect, R.mipmap.article_un_collect)
                     }
+                    val ivCollect  = holder.getView<ImageView>(R.id.ivCollect)
+                    var collected = item.collect
+                    ivCollect.clicks()
+                        .throttleFirst(2, TimeUnit.SECONDS)
+                        .subscribe{
+                            collected = !collected
+                            onCollectedListener?.onCollected(collected, holder.adapterPosition)
+                        }
                 }
             }
 
@@ -61,6 +82,15 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<Article, BaseViewHolder>() , Lo
                     }else{
                         holder.setImageResource(R.id.ivCollect, R.mipmap.article_un_collect)
                     }
+
+                    val ivCollect  = holder.getView<ImageView>(R.id.ivCollect)
+                    var collected = item.collect
+                    ivCollect.clicks()
+                        .throttleFirst(2, TimeUnit.SECONDS)
+                        .subscribe{
+                            collected = !collected
+                            onCollectedListener?.onCollected(collected, holder.adapterPosition)
+                        }
                 }
             }
 

@@ -33,4 +33,6 @@ object Constants{
      * webView 标题
      */
     const val WEB_TITLE = "webTitle"
+
+    const val HISTORY_SEARCH = "history_search"
 }
